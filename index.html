@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/botonaudio.css"> -->
+    <title>Laberinto</title>
+    <style>
+       body{
+           margin:0
+       }
+       #container{
+           position: relative;
+       }
+       #on{
+           width: 25%;
+           height:20% ;
+           position: absolute;
+           top: 35%;
+           left:35%
+
+       }
+       #reload{
+           display:none;
+           width: 25%;
+           height:20% ;
+           position: absolute;
+           top: 35%;
+           left:35%
+       }
+    </style>
+    <!-- onload="dibujaCanvas()" -->
+</head>
+<body>
+    <div id="fondo">
+        <div id="container">
+            <canvas id="canvas"></canvas>
+       <div id="cont">
+        <button id="on" onclick="on()">COMENZAR</button> 
+ 
+        
+        <button id="reload" onclick="location.reload()">VOLVER A EMPEZAR</button>
+       </div>
+    </div> 
+    <div id="botonNv1">
+        <button id="botonAi"><img id="sound2" src ="https://img.icons8.com/carbon-copy/100/000000/low-volume.png"></button>
+    </div>
+
+    <audio autoplay="autoplay" loop="loop">
+        <source src="audio/mapas.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="grito">
+        <source src="audio/mujergritando2.mp3" type="audio/mpeg">
+    </audio>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/audio.js"></script>
+</body>
+</html>

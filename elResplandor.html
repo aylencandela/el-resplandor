@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos/main.css">
+    <link rel="stylesheet" href="estilos/botonaudio.css">
+    
+    <title>El Resplandor</title>
+</head>
+<body>
+    <main>
+        <div id="intro" class="slide">
+            <canvas id=canvas width="1000" height="595"></canvas>
+            <div id=sombra ></div>
+            <h1>ESCAPE EN EL</h1>
+            <h2>HOTEL <br> OVERLOOK</h2>
+            <button id="botonHistoria"><a href="#historia">START</a></button>
+            <button id="botonAi"><img id="sound2" src ="https://img.icons8.com/carbon-copy/100/000000/low-volume.png"></button>
+        </div>
+        <div id="historia" class="slide">
+            <div id="alfombra"> 
+                <img src="" alt="alfombra" class="imgConverted">
+            </div>
+            <div id="sombra"></div>
+            <section class="parrafo">
+                <div class="historiaParrafo animated-text">
+                    <p class="line">Cuando la familia Torrance se muda al Hotel Overlook, sucesos paranormales comienzan a amenazarlos, especialmente al padre, Jack, quien llega al borde de la locura.</p>
+                    <p class="line">Su esposa Wendy, asustada por el comportamiento extraño de su esposo, decide escapar en la noche junto a su hijo Danny.</p>
+                    <p class="line">Pero su camino para salir del hotel no será tan sencillo...</p></p>
+                    <p class="line">El Hotel Overlook no dejará escapar tan fácilmente a esta familia. Jack ha separado y encerrado a Wendy junto a Danny. Él y los demás espectros del hotel los están observando.</p>
+                    <p class="line">Tenemos la oportunidad de ayudarlos a escapar de un horrible destino</p>
+                    <p class="line">Recolecta las llaves, ¡escapa del hotel! </p>
+                    <p class="line">Y bajo ninguna circunstancia dejes que te encuentren...</p>
+                    <p class="line">¡Suerte!</p>
+                </div>      
+            </section>
+            <button><a href="#menu">CONTINUAR</a></button>
+        </div>
+
+        <div id="menu" class="slide">
+            <div id="alfombra"> 
+                <img src="" alt="alfombra" class="imgConverted">
+             </div>
+             <div id="sombra"></div>
+            <h1>¿Con quién vas jugar?</h1>
+            <div class="Personajes">
+                <div id="personaje1">
+                    <div>
+                        <div id="daniel">   </div>
+                        <button><a href="#personajeA" >Danny</a></button>
+                    </div>              
+                </div>
+                <div id="personaje2">
+                    <div>
+                        <div id="mom"> </div>
+                        <button><a href="#personajeB">Wendy</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="personajeA" class="slide">
+            <div id="alfombra"> 
+                <img src="" alt="alfombra" class="imgConverted">
+             </div>
+             <div id="sombra"></div>
+            <h1>Danny</h1>
+            <div id="daniel">   </div>
+            <p class="parrafoPersonaje">
+                Daniel Torrance tiene cinco años y posee el ‘Resplandor’, habilidad que le permite ver el futuro y el pasado. <br> Mientras vive en Overlook, experimenta visiones aterradoras de los diversos espíritus malignos que habitan el lugar.  ¡Ayúdalo a encontrar a Wendy para poder escapar de Jack!
+            </p>
+            <div class="botonesDescripciones">
+                <button><a href="#menu">Cambia el personaje</a></button>
+                <button><a href="index.html" class="boton-play">PLAY</a></button>
+            </div>
+            
+        </div>
+        <div id="personajeB" class="slide">
+            <div id="alfombra"> 
+                <img src="" alt="alfombra" class="imgConverted">
+             </div>
+             <div id="sombra"></div>
+            <h1>Wendy</h1>
+            <p class="parrafoPersonaje">
+                Wendy es una  madre devota por su hijo que, a pesar de su temor al hotel y a su marido, se arma de valor para luchar y defenderse. <br>  ¡Ayudala a encontrar a Dany y escapar de Jack!
+            </p>
+            <div id="mom"> </div>
+            <div class="botonesDescripciones">
+                <button><a href="#menu">Cambia el personaje</a></button>
+                <button><a href="index.html" class="boton-play">PLAY</a></button>
+            </div>
+            
+        </div>
+
+        <!-- Audio -->
+        
+
+
+        <audio autoplay="autoplay" loop="loop">
+            <source src="audio/elresplandorinicio.mp3" type="audio/mpeg">
+        </audio>
+    </main>
+    <script src="js/presentacion.js"></script>
+    <script src="js/audio.js"></script>
+    
+</body>
+</html>
