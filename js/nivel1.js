@@ -45,8 +45,8 @@
 // Llamar a la imagen del personaje
 let dani = new Image()
 dani.src = "img/daniel.png"
-let llave =new Image()
-llave.src="img/llave.png"
+// let llave =new Image()
+// llave.src="../img/llave.png"
 
 // let source="img/twins.png"
 // let twins= new Image();
@@ -70,14 +70,16 @@ let miPersonaje
 const anchoPared=5;
 const largoPared=50;
 function startGame() {
+  // ACA SE INSTANCIAN LOS NUEVOS PERSONAJES Y PAREDES
     miAreaDejuego.start();
      // ancho, alto, color, x, y, vertical
-    miPersonaje= new component(20,20,"red",0,0,false);
+    // miPersonaje= new component(20,20,"red",0,0,false);
+    miPersonaje= new personajes (dani,120,190);
     misParedes=[
         new component(largoPared,anchoPared,"black",30,30,false),
-        new component(anchoPared,largoPared,"black",30,30,true),
-        new component(anchoPared,largoPared,"black",80,30,true),
-        new component(largoPared + 4,anchoPared,"black",30,80,false)
+        new component(anchoPared,largoPared,"black",30,30,true)
+        // new component(anchoPared,largoPared,"black",80,30,true),
+        // new component(largoPared + 4,anchoPared,"black",30,80,false)
     ]
   }
   
@@ -87,19 +89,20 @@ function startGame() {
       this.canvas.height = window.innerHeight * 0.6;
 	  this.canvas.width = window.innerWidth * 0.7;
       this.context = this.canvas.getContext("2d");
-      this.interval = setInterval(updateGameArea, 20);
+      this.interval = setInterval(updateGameArea, 10);
       window.addEventListener('keydown', function (e) {
         miAreaDejuego.key = e.keyCode;
       })
       window.addEventListener('keyup', function (e) {
         miAreaDejuego.key = false;
       })
-    },
+    }
+    ,
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       }
   }
-// CONSTRUCTOR QUE DIBUJA LOS COMPONENTE DEL JUEGO
+// CONSTRUCTOR QUE DIBUJA LAS PAREDES DEL JUEGO
   function component(ancho, alto, color, x, y,vertical) {
     this.ancho = ancho;
     this.alto = alto;
@@ -108,74 +111,103 @@ function startGame() {
     this.vertical=vertical;
     this.speedX=0;
     this.speedY=0;
-    this.colision1=false;
-    this.colision2=false;
-    this.colision3=false;
-    this.colision4=false;
     this.update= function(){
      ctx = miAreaDejuego.context;
     ctx.fillStyle = color;
     ctx.fillRect(this.x, this.y, this.ancho, this.alto);
-    },
-    this.nuevaPosicion=function () {
-        this.x+=this.speedX;
-        this.y+=this.speedY;
-    },
-    this.colision=function (obj) {
-        // MI PERSONAJE
-        let miDrc=this.x + (this.ancho);
-        let miIzq=this.x;
-        let miTop=this.y;
-        let miBase=this.y + (this.alto);
-
-        // PAREDES
-
-        let paredDrc= obj.x + (obj.ancho);
-        let paredIzq= obj.x;
-        let paredTop= obj.y;
-        let paredBase=obj.y + (obj.alto);
-        let vertical= obj.vertical;
-
-
-        if (vertical) {
-            // <>
-            
-            if (miTop > paredBase || miBase < paredTop ) {
-                this.colision1=false
-            } else if(miDrc ==  paredIzq || miBase < paredTop){
-             this.colision1=true
-           }else if (miIzq==paredDrc) {
-            this.colision2=true;
-            }    
-        }else{
-            if (miIzq> paredDrc || miDrc < paredIzq ) {
-                this.colision3=false;
-            }else if(miTop == paredBase){
-                this.colision3=true;
-            }
-
-            if (miIzq> paredDrc || miDrc < paredIzq) {
-              this.colision4=false;
-            }else if (miBase == paredTop) {
-              this.colision4=true;
-            }
-
-        }
     }
     
   }
 
+// CONSTRUCTOR DE NUESTRO PERSONAJE
+
+ function personajes (personaje,widthImage,heightImage){
+ 		this.src = personaje;
+        this.frameX = 0;
+        this.frameY=0
+        this.x = 50;
+        this.y = 100;
+        this.speedX=0;
+        this.speedY=0;
+        this.width = 54;
+        this.height = 54;
+        this.colision1=false;
+        this.colision2=false;
+        this.colision3=false;
+        this.colision4=false;
+        this.widthImage=widthImage;
+        this.heightImage=heightImage;
+        // METODOS
+        this.draw = function(){
+        	ctx = miAreaDejuego.context;
+            ctx.drawImage(this.src, this.frameX * this.widthImage, this.frameY*this.heightImage, this.widthImage, this.heightImage, this.x, this.y, this.width, this.height)
+        },
+         this.nuevaPosicion=function () {
+        this.x+=this.speedX;
+        this.y+=this.speedY;
+	    },
+	    this.colision=function (obj) {
+	        // MI PERSONAJE
+	        this.miDrc=this.x + this.width;
+	        this.miIzq=this.x;
+	        this.miTop=this.y;
+	        this.miBase=this.y + this.height;
+
+	        // PAREDES
+
+	        const paredDrc= obj.x + (obj.ancho);
+	        const paredIzq= obj.x;
+	        const paredTop= obj.y;
+	        const paredBase=obj.y + (obj.alto);
+	        const vertical= obj.vertical;
+
+
+	        if (vertical) {
+	            // <
+	            
+	            if (this.miTop > paredBase || this.miBase < paredTop ) {
+	                this.colision1=false
+	            } else if(this.miDrc >  paredIzq || this.miBase > paredTop){
+	             this.colision1=true
+	           }else if (this.miIzq<=paredDrc) {
+	            this.colision2=true;
+	            }    
+
+
+	        }else{
+	            if (this.miIzq> paredDrc || this.miDrc < paredIzq ) {
+	                this.colision3=false;
+	            }else if(this.miTop == paredBase){
+	                this.colision3=true;
+	            }
+
+	            if (this.miIzq> paredDrc || this.miDrc < paredIzq) {
+	              this.colision4=false;
+	            }else if (this.miBase == paredTop) {
+	              this.colision4=true;
+	            }
+
+	        }
+	    }
+
+
+ }
+
+
 
   function updateGameArea() {
    miAreaDejuego.clear();
-   miPersonaje.speedX = 0;
-   miPersonaje.speedY = 0;
+   miPersonaje.draw();
+   miPersonaje.nuevaPosicion();
+   
    if (miAreaDejuego.key && miAreaDejuego.key == 37){
      if (miPersonaje.colision2) {
             miPersonaje.speedX=0;
             miPersonaje.colision2=false;
           } else {
-          miPersonaje.speedX = -1;   
+          miPersonaje.speedX = -1;
+          miPersonaje.frameY=1
+
       } 
 
       }
@@ -185,7 +217,9 @@ function startGame() {
         miPersonaje.speedX=0;
         miPersonaje.colision1=false;
       } else if (miPersonaje.colision2 || !miPersonaje.colision1 || miPersonaje.colision3){
-      miPersonaje.speedX = 1; 
+      miPersonaje.speedX = 1;
+      miPersonaje.frameY=0
+
       } 
 
     }
@@ -195,6 +229,8 @@ function startGame() {
         miPersonaje.colision3=false;
       }else{
       miPersonaje.speedY = -1;        
+      miPersonaje.frameY=2
+ 
       }
      }
     if (miAreaDejuego.key && miAreaDejuego.key == 40) {
@@ -202,15 +238,12 @@ function startGame() {
         miPersonaje.speedY=0;
         miPersonaje.colision4=false;
       }else{
-      miPersonaje.speedY = 1;         
+      miPersonaje.speedY = 1;  
+      miPersonaje.frameY=3;       
 
       }
      }
 
-
-   
-    miPersonaje.nuevaPosicion()
-    miPersonaje.update();
     for (let i = 0; i < misParedes.length; i++) {
         misParedes[i].update() 
         miPersonaje.colision(misParedes[i])   
