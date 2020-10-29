@@ -76,10 +76,38 @@ function startGame() {
     // miPersonaje= new component(20,20,"red",0,0,false);
     miPersonaje= new personajes (dani,120,190);
     misParedes=[
-        new component(largoPared,anchoPared,"black",30,30,false),
-        new component(anchoPared,largoPared,"black",30,30,true)
-        // new component(anchoPared,largoPared,"black",80,30,true),
-        // new component(largoPared + 4,anchoPared,"black",30,80,false)
+      //Bordes exteriores
+      new component(largoPared*20,anchoPared,"black",0,0,false),
+      new component(anchoPared,largoPared*8,"black",0,0,true),
+      new component(largoPared*20,anchoPared,"black",0,370,false),
+      new component(anchoPared,largoPared*2,"black",952,0,true),
+      new component(anchoPared,largoPared*2,"black",952,225,true),
+
+      //Paredes Laberinto 1
+      new component(largoPared,anchoPared,"black",0,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared,largoPared,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*2,0,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*3,largoPared,true),
+      new component(largoPared,anchoPared,"black",largoPared*3,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared*4,largoPared,true),
+      new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*3,false),
+      new component(anchoPared,largoPared,"black",largoPared,largoPared*3,true),
+      new component(largoPared+5,anchoPared,"black",largoPared,largoPared*4,false),
+      new component(largoPared*2+5,anchoPared,"black",largoPared*3,largoPared*4,false),
+      new component(anchoPared,largoPared,"black",largoPared*5,largoPared*4,true),
+      new component(anchoPared,largoPared,"black",largoPared*5,0,true),
+      new component(largoPared*3+5,anchoPared,"black",largoPared*5,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared*7,largoPared,true),
+      new component(anchoPared,largoPared,"black",largoPared*8,largoPared,true),
+      new component(anchoPared,largoPared*3,"black",largoPared*10,0,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*9,largoPared,true),
+      new component(largoPared*4+5,anchoPared,"black",largoPared*6,largoPared*3,false),
+      new component(anchoPared,largoPared,"black",largoPared*6,largoPared*3,true),
+      new component(largoPared*3+5,anchoPared,"black",largoPared*6,largoPared*4,false),
+      new component(largoPared,anchoPared,"black",largoPared*11,largoPared*3,false),
+      new component(anchoPared,largoPared*2,"black",largoPared*11,largoPared*3,true),
+      new component(anchoPared,largoPared,"black",largoPared*11,0,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*12,0,true)
     ]
   }
   
@@ -255,3 +283,59 @@ function startGame() {
   }
     
   
+// LABERINTOS
+        
+// Paredes Laberinto 2
+// new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*2,false),
+// new component(anchoPared,largoPared,"black",largoPared*4,0,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*2,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared,largoPared,true),
+// new component(largoPared*3+5,anchoPared,"black",largoPared,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*2,largoPared*4,true),
+// new component(largoPared*4+5,anchoPared,"black",largoPared*2,largoPared*4,false),
+// new component(anchoPared,largoPared,"black",largoPared*4,largoPared*3,true),
+// new component(largoPared*3,anchoPared,"black",largoPared*5,largoPared*3,false),
+// new component(largoPared,anchoPared,"black",largoPared*5,largoPared,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*8,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*6,largoPared,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*6,largoPared*2,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*7,0,true),
+// new component(largoPared*3+5,anchoPared,"black",largoPared*8,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared*11,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*11,largoPared*2,false),
+// new component(anchoPared,largoPared,"black",largoPared*8,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*8,largoPared*2,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*10,largoPared*2,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*9,largoPared*4,false),
+// new component(anchoPared,largoPared,"black",largoPared*9,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*11,largoPared*3,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*11,largoPared*3,false),
+// new component(largoPared+5,anchoPared,"black",largoPared*11,largoPared*4,false)
+
+// Paredes Laberinto 3
+// new component(largoPared*3+5,anchoPared,"black",largoPared,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared,0,true),
+// new component(anchoPared,largoPared*2,"black",largoPared*4,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*4,largoPared*2,false),
+// new component(largoPared+5,anchoPared,"black",largoPared*4,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared*5,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",0,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared*2,largoPared*2,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*2,largoPared*2,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*3,largoPared*2,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*4,false),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*4,largoPared*4,false),
+// new component(anchoPared,largoPared,"black",largoPared*6,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*7,largoPared*4,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*8,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared*9,largoPared*3,true),
+// new component(largoPared*3+5,anchoPared,"black",largoPared*9,largoPared*4,false),
+// new component(anchoPared,largoPared*3,"black",largoPared*11,largoPared,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*11,largoPared,false),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*7,largoPared*2,false),
+// new component(largoPared+5,anchoPared,"black",largoPared*7,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared*7,largoPared,true),
+// new component(anchoPared,largoPared,"black",largoPared*8,0,true),
+// new component(anchoPared,largoPared,"black",largoPared*9,largoPared,true),
+// new component(anchoPared,largoPared*2,"black",largoPared*10,0,true)
