@@ -167,7 +167,7 @@ function startGame() {
 	            
 	            if (this.miTop > paredBase || this.miBase < paredTop ) {
 	                this.colision1=false
-	            } else if(this.miDrc >  paredIzq || this.miBase > paredTop){
+	            } else if(this.miDrc ==  paredIzq || this.miBase > paredTop){
 	             this.colision1=true
 	           }else if (this.miIzq<=paredDrc) {
 	            this.colision2=true;
@@ -199,6 +199,8 @@ function startGame() {
    miAreaDejuego.clear();
    miPersonaje.draw();
    miPersonaje.nuevaPosicion();
+   miPersonaje.speedX=0;
+   miPersonaje.speedY=0;
    
    if (miAreaDejuego.key && miAreaDejuego.key == 37){
      if (miPersonaje.colision2) {
