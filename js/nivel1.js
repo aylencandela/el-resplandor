@@ -76,57 +76,15 @@ function startGame() {
     // miPersonaje= new component(20,20,"red",0,0,false);
     miPersonaje= new personajes (dani,120,190);
     misParedes=[
-<<<<<<< HEAD
         new component(largoPared,anchoPared,"black",30,30,false),
         new component(anchoPared,largoPared,"black",30,30,true)
         // new component(anchoPared,largoPared,"black",80,30,true),
         // new component(largoPared + 4,anchoPared,"black",30,80,false)
     ]
-=======
-        // new component(largoPared,anchoPared,"black",30,30,false),
-        // new component(anchoPared,largoPared,"black",30,30,true),
-        // new component(anchoPared,largoPared,"black",80,30,true),
-
-        //Bordes exteriores
-        new component(largoPared*20,anchoPared,"black",0,0,false),
-        new component(anchoPared,largoPared*8,"black",0,0,true),
-        new component(largoPared*20,anchoPared,"black",0,370,false),
-        new component(anchoPared,largoPared*2,"black",952,0,true),
-        new component(anchoPared,largoPared*2,"black",952,225,true),
-
-        //Paredes Laberinto
-        new component(largoPared,anchoPared,"black",0,largoPared,false),
-        new component(anchoPared,largoPared,"black",largoPared,largoPared,true),
-        new component(anchoPared,largoPared*2,"black",largoPared*2,0,true),
-        new component(anchoPared,largoPared*2,"black",largoPared*3,largoPared,true),
-        new component(largoPared,anchoPared,"black",largoPared*3,largoPared,false),
-        new component(anchoPared,largoPared,"black",largoPared*4,largoPared,true),
-        new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*3,false),
-        new component(anchoPared,largoPared,"black",largoPared,largoPared*3,true),
-        new component(largoPared+5,anchoPared,"black",largoPared,largoPared*4,false),
-        new component(largoPared*2+5,anchoPared,"black",largoPared*3,largoPared*4,false),
-        new component(anchoPared,largoPared,"black",largoPared*5,largoPared*4,true),
-        new component(anchoPared,largoPared,"black",largoPared*5,0,true),
-        new component(largoPared*3+5,anchoPared,"black",largoPared*5,largoPared,false),
-        new component(anchoPared,largoPared,"black",largoPared*7,largoPared,true),
-        new component(anchoPared,largoPared,"black",largoPared*8,largoPared,true),
-        new component(anchoPared,largoPared*3,"black",largoPared*10,0,true),
-        new component(anchoPared,largoPared*2,"black",largoPared*9,largoPared,true),
-        new component(largoPared*4+5,anchoPared,"black",largoPared*6,largoPared*3,false),
-        new component(anchoPared,largoPared,"black",largoPared*6,largoPared*3,true),
-        new component(largoPared*3+5,anchoPared,"black",largoPared*6,largoPared*4,false),
-        new component(largoPared,anchoPared,"black",largoPared*11,largoPared*3,false),
-        new component(anchoPared,largoPared*2,"black",largoPared*11,largoPared*3,true),
-        new component(anchoPared,largoPared,"black",largoPared*11,0,true),
-        new component(anchoPared,largoPared*2,"black",largoPared*12,0,true),
-
-
-      ]
->>>>>>> 1e3965cb6ed80ef94ad6f636b0e8ce9a31e8fd86
   }
   
   var miAreaDejuego = {
-    canvas : document.getElementById('canvas'),
+    canvas : document.getElementById('nivel1'),
     start : function() {
       this.canvas.height = window.innerHeight * 0.6;
 	  this.canvas.width = window.innerWidth * 0.7;
