@@ -82,7 +82,7 @@ function startGame() {
         // new component(largoPared + 4,anchoPared,"black",30,80,false)
     ]
   }
-  
+
   var miAreaDejuego = {
     canvas : document.getElementById('nivel1'),
     start : function() {
@@ -116,7 +116,7 @@ function startGame() {
     ctx.fillStyle = color;
     ctx.fillRect(this.x, this.y, this.ancho, this.alto);
     }
-    
+
   }
 
 // CONSTRUCTOR DE NUESTRO PERSONAJE
@@ -125,8 +125,8 @@ function startGame() {
  		this.src = personaje;
         this.frameX = 0;
         this.frameY=0
-        this.x = 50;
-        this.y = 100;
+        this.x = 300;
+        this.y = 200;
         this.speedX=0;
         this.speedY=0;
         this.width = 54;
@@ -164,14 +164,14 @@ function startGame() {
 
 	        if (vertical) {
 	            // <
-	            
-	            if (this.miTop > paredBase || this.miBase < paredTop ) {
+
+	            if (this.miTop >  paredBase || this.miBase < paredTop ) {
 	                this.colision1=false
 	            } else if(this.miDrc >  paredIzq || this.miBase > paredTop){
 	             this.colision1=true
 	           }else if (this.miIzq<=paredDrc) {
 	            this.colision2=true;
-	            }    
+	            }
 
 
 	        }else{
@@ -199,57 +199,50 @@ function startGame() {
    miAreaDejuego.clear();
    miPersonaje.draw();
    miPersonaje.nuevaPosicion();
-   
+
    if (miAreaDejuego.key && miAreaDejuego.key == 37){
-     if (miPersonaje.colision2) {
-            miPersonaje.speedX=0;
-            miPersonaje.colision2=false;
-          } else {
-          miPersonaje.speedX = -1;
+    //  if (miPersonaje.colision2) {
+    //         miPersonaje.speedX=0;
+    //         miPersonaje.colision2=false;
+    //       } else {
+          miPersonaje.speedX = -.7;
           miPersonaje.frameY=1
 
-      } 
+      // }
 
       }
     if (miAreaDejuego.key && miAreaDejuego.key == 39) {
-      
-      if (miPersonaje.colision1){
-        miPersonaje.speedX=0;
-        miPersonaje.colision1=false;
-      } else if (miPersonaje.colision2 || !miPersonaje.colision1 || miPersonaje.colision3){
-      miPersonaje.speedX = 1;
-      miPersonaje.frameY=0
 
-      } 
+      miPersonaje.speedX=.8
 
     }
     if (miAreaDejuego.key && miAreaDejuego.key == 38) {
-      if (miPersonaje.colision3) {
-        miPersonaje.speedY=0;
-        miPersonaje.colision3=false;
-      }else{
-      miPersonaje.speedY = -1;        
+      // if (miPersonaje.colision3) {
+      //   miPersonaje.speedY=0;
+      //   miPersonaje.colision3=false;
+      // }else{
+      miPersonaje.speedY = -.7;
       miPersonaje.frameY=2
- 
-      }
-     }
-    if (miAreaDejuego.key && miAreaDejuego.key == 40) {
-      if (miPersonaje.colision4) {
-        miPersonaje.speedY=0;
-        miPersonaje.colision4=false;
-      }else{
-      miPersonaje.speedY = 1;  
-      miPersonaje.frameY=3;       
 
       }
-     }
+    //  }
+    if (miAreaDejuego.key && miAreaDejuego.key == 40) {
+      // if (miPersonaje.colision4) {
+      //   miPersonaje.speedY=0;
+      //   miPersonaje.colision4=false;
+      // }else{
+      miPersonaje.speedY = .7;
+      miPersonaje.frameY=3;
+
+      }
+    //  }
 
     for (let i = 0; i < misParedes.length; i++) {
-        misParedes[i].update() 
-        miPersonaje.colision(misParedes[i])   
-  
-        
+        misParedes[i].update()
+        miPersonaje.colision(misParedes[i])
+
+
     }
   }
-    
-  
+
+
