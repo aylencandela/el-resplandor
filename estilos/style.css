@@ -9,7 +9,7 @@ body{
 canvas{
     position: relative;
 }
-#fondo{
+/* #fondo{
         position: absolute;
         background-color: black;
         background-image: url("../img/alfombra.jpg");
@@ -22,7 +22,7 @@ canvas{
         display: flex;
         box-shadow: 0px 0px 0px 190px rgba(0,0,0,0.99) inset;
         -webkit-box-shadow: 0px 0px 190px 200px rgba(0,0,0,0.99) inset;
-    }
+    } */
 
 
 html {
@@ -51,9 +51,16 @@ main{
     width: 100vw;
     overflow: hidden;
     background-image: url("../img/piso1.jpg");
+    box-shadow: 0px 0px 0px 190px rgba(0,0,0,0.99) inset;
+    -webkit-box-shadow: 0px 0px 190px 200px rgba(0,0,0,0.99) inset;
 }
 
  #nivel1{
 background-image: url("../img/piso2.jpg"); 
 
  }
+
+
+#game-over{
+    display: none;
+}
