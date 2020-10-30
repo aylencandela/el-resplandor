@@ -7,17 +7,6 @@ canvas.width = window.innerWidth * 0.7;
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-let interval
-let time=0
-let score=0
-// ------------ CANVAS -----------
-
-
-
-function on(){
-  interval=setInterval(dibujoCanvas,1000/15)
-
-}
 
 // -------------------- PAREDES DEL LOS LABERINTOS --------------------
 
@@ -176,22 +165,7 @@ dani.src = "img/daniel.png"
 let wendy =new Image()
 wendy.src="img/mom.png"
 
-<<<<<<< HEAD
-
-// // ------------- llamar a a funcion que crea al miPersonaje--------------
-
-let miPersonaje= new Hero(dani,120,190);
-
-miPersonaje.draw()
- laberinto1.forEach(pared => {
-        pared.dibujar()
-        miPersonaje.checkCollision(pared)
-      })
-    miPersonaje.frameX++
-    miPersonaje.frameX >= 5 ? miPersonaje.frameX = 0 : null;
-=======
 // ------------- llamar a a funcion que crea al heroe--------------
->>>>>>> b2b21ba141ed1465ba59841157454c5540842ec1
 
 
 
@@ -278,79 +252,13 @@ let twins= new Image();
 twins.src=source
 
 // // ----------------- crear array de componentes de fantasmas -----------------
-let gemelas= new fantasma(twins,2,10,2,10,80,200,70,70,180,101,30,50,2,2,2,2)
+let gemelas= new fantasma(twins,2,10,2,10,80,0,70,70,180,101,30,50,2,2,2,2)
 // let gemelas2= new fantasma(twins,2,10,2,10,800,50,70,70,180,101,30,50,2,2,2,2)
 
 // let enemies= [gemelas,gemelas2]
 let heroe = new Hero(dani,120,190);
 // let llave1 = new Element(llave,800,575,300,200,50,50)
 
-<<<<<<< HEAD
-
-// // // -------------------------- CONSTROLES ----------------------------
-// document.addEventListener("keydown", (e) => {
-//  switch (e.key) {
-//         // Arriba
-//         case "ArrowUp":
-//         case "w":
-//         case "W":
-//             if (!miPersonaje.collide) {
-//                 miPersonaje.y -= 3;
-//                 miPersonaje.frameY=2
-//             } else {
-//                 miPersonaje.y += 15;
-//                 miPersonaje.collide = false;
-//             }
-            
-//             break;
-
-//         // Abajo
-//         case "ArrowDown":
-//         case "s":
-//         case "S":
-//             if (!miPersonaje.collide) {
-//                 miPersonaje.y += 3;miPersonaje.frameY=3
-//             } else {
-//                 miPersonaje.y -= 15;
-//                 miPersonaje.collide = false;
-
-//             }
-//             break;
-
-
-//         // Izquierda
-//         case "ArrowLeft":
-//         case "a":
-//         case "A":
-//             if (!miPersonaje.collide) {
-//                 miPersonaje.x -= 3;
-//                 miPersonaje.frameY=1
-//             } else {
-//                 miPersonaje.x += 15;
-//                 miPersonaje.collide = false;
-//             }
-//             break;
-
-//         // Derecha
-//         case "ArrowRight":
-//         case "d":
-//         case "D":
-//             if (!miPersonaje.collide) {
-//                 miPersonaje.x += 3;
-//                 miPersonaje.frameY=0
-             
-//             } else {
-//                 miPersonaje.x -= 15;
-
-              
-
-//                 miPersonaje.collide = false;
-//             }
-            
-              
-    
-//             break;
-=======
 function gameInit(){
   ctx.clearRect(0, 0, canvas.width,canvas.height);
  laberinto1.forEach(component=>{
@@ -455,15 +363,10 @@ document.addEventListener("keydown", (e) => {
             break;
     }
 })
->>>>>>> b2b21ba141ed1465ba59841157454c5540842ec1
 
 
 //         default:
 //             break;
 //     }
 // })
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> b2b21ba141ed1465ba59841157454c5540842ec1
