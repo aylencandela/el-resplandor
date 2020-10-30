@@ -143,7 +143,7 @@ function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
                 this.collide = true;
                  if(wall == gemelas){
                    
-                    // grito.play()
+                    grito.play()
                     stop()
 
                 }
