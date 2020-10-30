@@ -5,13 +5,6 @@ canvas.height = window.innerHeight * 0.6;
 canvas.width = window.innerWidth * 0.7;
 
 
-// let anchoPared= 10
-// let altoPared=22
-// let grosorPared=5
-// let interval
-// let seg=0
-
-
 // -------------------- PAREDES DEL LOS LABERINTOS --------------------
 
 const anchoPared=5;
@@ -104,71 +97,70 @@ const laberinto1=[
 //  // -----------------------------  NUESTRO PERSONAJE -------------------------
 
 
-//  class Hero {
-//     constructor(personaje,widthImage,heightImage) {
-//         // Propiedades.
-//         this.src = personaje;
-//         this.frameX = 0;
-//         this.frameY=0
-//         this.x = 50;
-//         this.y = 60;
-//         this.width = 54;
-//         this.height = 54;
-//         this.collide = false;
-//         this.widthImage=widthImage
-//         this.heightImage=heightImage
+ class Hero {
+    constructor(personaje,widthImage,heightImage) {
+        // Propiedades.
+        this.src = personaje;
+        this.frameX = 0;
+        this.frameY=0
+        this.x = 50;
+        this.y = 60;
+        this.width = 54;
+        this.height = 54;
+        this.collide = false;
+        this.widthImage=widthImage
+        this.heightImage=heightImage
 
 
-//         // Métodos.
-//         this.draw = function(){
-//             ctx.drawImage(this.src, this.frameX * this.widthImage, this.frameY*this.heightImage, this.widthImage, this.heightImage, this.x, this.y, this.width, this.height)
-//         }
-//         this.checkCollision = function (wall) {
-//             // Defino los bordes del héroe.
-//             this.top = this.y;
-//             this.bottom = this.y + this.height;
-//             this.left = this.x;
-//             this.right = this.x + this.width;
+        // Métodos.
+        this.draw = function(){
+            ctx.drawImage(this.src, this.frameX * this.widthImage, this.frameY*this.heightImage, this.widthImage, this.heightImage, this.x, this.y, this.width, this.height)
+        }
+        this.checkCollision = function (wall) {
+            // Defino los bordes del héroe.
+            this.top = this.y;
+            this.bottom = this.y + this.height;
+            this.left = this.x;
+            this.right = this.x + this.width;
 
-//             // Defino los bordes de la pared.
-//             const wallTop = wall.y;
-//             const wallBottom = wall.y + wall.height;
-//             const wallLeft = wall.x;
-//             const wallRight = wall.x + wall.width;
+            // Defino los bordes de la pared.
+            const wallTop = wall.y;
+            const wallBottom = wall.y + wall.height;
+            const wallLeft = wall.x;
+            const wallRight = wall.x + wall.width;
 
-//             // Compruebo si los bordes chocan.
-//             if (
-//                 this.left < wallRight &&
-//                 this.right > wallLeft &&
-//                 this.top < wallBottom &&
-//                 this.bottom > wallTop
+            // Compruebo si los bordes chocan.
+            if (
+                this.left < wallRight &&
+                this.right > wallLeft &&
+                this.top < wallBottom &&
+                this.bottom > wallTop
 
-//             ) {
-//                 this.collide = true;
-//                  if(wall == gemelas){
-                   
-//                     grito.play()
-//                     stop()
+            ) {
+                this.collide = true;
+            }
 
-//                 }
-//                 if(wall==llave1){
-//                     this.getDoorKey=true
-//                     } else{
-//                         this.getDoorKey=false
-//                     }
-//             }
+        }
+    }
+}
 
-//         }
-//     }
-// }
+// -------------- llamar a la imagen del miPersonaje -----------
+let dani = new Image()
+dani.src = "img/daniel.png"
+let wendy =new Image()
+wendy.src="img/mom.png"
 
-// // -------------- llamar a la imagen del heroe -----------
-// let dani = new Image()
-// dani.src = "img/daniel.png"
-// let wendy =new Image()
-// wendy.src="img/mom.png"
+// // ------------- llamar a a funcion que crea al miPersonaje--------------
 
-// // ------------- llamar a a funcion que crea al heroe--------------
+let miPersonaje= new Hero(dani,120,190);
+
+miPersonaje.draw()
+ laberinto1.forEach(pared => {
+        pared.dibujar()
+        miPersonaje.checkCollision(pared)
+      })
+    // miPersonaje.frameX++
+    // miPersonaje.frameX >= 5 ? miPersonaje.frameX = 0 : null;
 
 
 
@@ -251,72 +243,85 @@ const laberinto1=[
 
 
 // // -------------------------- CONSTROLES ----------------------------
-// document.addEventListener("keydown", (e) => {
-//  switch (e.key) {
-//         // Arriba
-//         case "ArrowUp":
-//         case "w":
-//         case "W":
-//             if (!heroe.collide) {
-//                 heroe.y -= 3;
-//                 heroe.frameY=2
-//             } else {
-//                 heroe.y += 15;
-//                 heroe.collide = false;
-//             }
+document.addEventListener("keydown", (e) => {
+ switch (e.key) {
+        // Arriba
+        case "ArrowUp":
+        case "w":
+        case "W":
+            if (!miPersonaje.collide) {
+                miPersonaje.y -= 3;
+                miPersonaje.frameY=2
+            } else {
+                miPersonaje.y += 15;
+                miPersonaje.collide = false;
+            }
             
-//             break;
+            break;
 
-//         // Abajo
-//         case "ArrowDown":
-//         case "s":
-//         case "S":
-//             if (!heroe.collide) {
-//                 heroe.y += 3;heroe.frameY=3
-//             } else {
-//                 heroe.y -= 15;
-//                 heroe.collide = false;
+        // Abajo
+        case "ArrowDown":
+        case "s":
+        case "S":
+            if (!miPersonaje.collide) {
+                miPersonaje.y += 3;miPersonaje.frameY=3
+            } else {
+                miPersonaje.y -= 15;
+                miPersonaje.collide = false;
 
-//             }
-//             break;
+            }
+            break;
 
 
-//         // Izquierda
-//         case "ArrowLeft":
-//         case "a":
-//         case "A":
-//             if (!heroe.collide) {
-//                 heroe.x -= 3;
-//                 heroe.frameY=1
-//             } else {
-//                 heroe.x += 15;
-//                 heroe.collide = false;
-//             }
-//             break;
+        // Izquierda
+        case "ArrowLeft":
+        case "a":
+        case "A":
+            if (!miPersonaje.collide) {
+                miPersonaje.x -= 3;
+                miPersonaje.frameY=1
+            } else {
+                miPersonaje.x += 15;
+                miPersonaje.collide = false;
+            }
+            break;
 
-//         // Derecha
-//         case "ArrowRight":
-//         case "d":
-//         case "D":
-//             if (!heroe.collide) {
-//                 heroe.x += 3;
-//                 heroe.frameY=0
+        // Derecha
+        case "ArrowRight":
+        case "d":
+        case "D":
+            if (!miPersonaje.collide) {
+                miPersonaje.x += 3;
+                miPersonaje.frameY=0
              
-//             } else {
-//                 heroe.x -= 15;
+            } else {
+                miPersonaje.x -= 15;
 
               
 
-//                 heroe.collide = false;
-//             }
+                miPersonaje.collide = false;
+            }
             
               
     
-//             break;
+            break;
 
-//         default:
-//             break;
-//     }
-// })
+        default:
+            break;
+    }
+})
   
 
+// ----------------- funciones del canvas -------------
+
+// function on(){
+//     interval= setInterval(dibujoCanvas, 1000/15)
+//     container.removeChild(buttonOn)
+  
+//   }
+  
+//    function stop(){
+     
+//       clearInterval(interval)
+//         reload.style.display="inline"
+//    }
