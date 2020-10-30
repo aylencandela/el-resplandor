@@ -252,7 +252,7 @@ let twins= new Image();
 twins.src=source
 
 // // ----------------- crear array de componentes de fantasmas -----------------
-let gemelas= new fantasma(twins,2,10,2,10,80,50,70,70,180,101,30,50,2,2,2,2)
+let gemelas= new fantasma(twins,2,10,2,10,80,200,70,70,180,101,30,50,2,2,2,2)
 // let gemelas2= new fantasma(twins,2,10,2,10,800,50,70,70,180,101,30,50,2,2,2,2)
 
 // let enemies= [gemelas,gemelas2]
