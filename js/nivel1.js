@@ -2,6 +2,9 @@ let buttonOn=document.querySelector("#on")
 let container=document.querySelector("#cont")
 let canvas=document.getElementById('nivel1'); 
 let ctx = canvas.getContext("2d");
+const gameOver = document.getElementById("game-over");
+const game = document.getElementById("cont");
+
 canvas.height = window.innerHeight * 0.6;
 canvas.width = window.innerWidth * 0.7;
 function getRandomInt(min, max) {
@@ -118,8 +121,9 @@ let elements=[doorKey]
         this.width = 54;
         this.height = 54;
         this.collide = false;
-        this.widthImage=widthImage
-        this.heightImage=heightImage
+        this.widthImage=widthImage;
+        this.heightImage=heightImage;
+        this.score=0;
 
 
         // Métodos.
@@ -151,15 +155,18 @@ let elements=[doorKey]
                  if(wall == gemelas){
                    
                     grito.play()
-                    stop()
+                    stop() 
+                    game.style.display = "none";
+                    gameOver.style.display = "flex";
+                    
 
                 }
-                // if(wall==llave1){
-                //     this.getDoorKey=true
-                //       score+=1
-                //     } else{
-                //         this.getDoorKey=false
-                //     }
+                if(wall==doorKey){
+                    this.getDoorKey=true
+                      this.score+=10
+                    } else{
+                        this.getDoorKey=false
+                    }
             }
 
         }
@@ -274,7 +281,15 @@ heroe.checkCollision(component)
    
  })
 
- elements[0].draw()
+
+ elements.forEach(e=>{
+  heroe.checkCollision(e);
+  e.draw()
+ })
+
+ if (heroe.getDoorKey) {
+  delete elements[0]
+ }
  
  bordes.forEach(component=>{
   component.dibujar();
