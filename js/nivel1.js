@@ -331,6 +331,10 @@ function stop(){
   clearInterval(interval)
     // reload.style.display="inline"
 }
+
+function resetNivel(){
+    window.location.reload()
+}
 // -------------------------- CONSTROLES ----------------------------
 document.addEventListener("keydown", (e) => {
  switch (e.key) {
