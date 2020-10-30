@@ -1,21 +1,27 @@
-let canvas=document.getElementById('canvas'); 
-let ctx = canvas.getContext("2d")
+let canvas=document.getElementById('nivel1'); 
+let ctx = canvas.getContext("2d");
 canvas.height = window.innerHeight * 0.6;
 canvas.width = window.innerWidth * 0.7;
 
-let xLab=30
-let yLab=50
-let op1=canvas.width/12
-let op2=canvas.height/5
-let anchoPared= op1+10
-let altoPared=op2-22
-let grosorPared=5
-let interval
-let seg=0
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// let anchoPared= 10
+// let altoPared=22
+// let grosorPared=5
+// let interval
+// let seg=0
+
+
 // -------------------- PAREDES DEL LOS LABERINTOS --------------------
-function component(ancho,alto,color,x,y,vertical) {
-    this.x = positionX+xLab;
-    this.y = positionY+yLab;
+
+const anchoPared=5;
+const largoPared=75;
+
+function component(ancho, alto, color, x, y,vertical) {
+    this.x = x;
+    this.y = y;
     this.width = ancho;
     this.height = alto;
     this.color = color;
@@ -27,6 +33,8 @@ function component(ancho,alto,color,x,y,vertical) {
     }
 }
 // --------- bordes ---------------
+
+
 
 const bordes=[
       new component(largoPared*20,anchoPared,"black",0,0,false,"wall"),
@@ -62,14 +70,21 @@ const laberinto1=[
       new component(largoPared*3+5,anchoPared,"black",largoPared*6,largoPared*4,false),
       new component(largoPared,anchoPared,"black",largoPared*11,largoPared*3,false),
       new component(anchoPared,largoPared*2,"black",largoPared*11,largoPared*3,true),
-      new component(anchoPared,largoPared,"black",largoPared*11,0,true)
+      new component(anchoPared,largoPared,"black",largoPared*11,0,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*12,0,true)
 
 ];
 
 // -------------- llamar a la funcion que dibuja las paredes -----------
+ laberinto1.forEach(component=>{
+ 	component.dibujar();
+ })
+ 
+ bordes.forEach(component=>{
+ 	component.dibujar();
+ })
 
-
-// -------------------- ELEMENTOS DE PUNTUACION  ------------------------------------------
+//-------------------- ELEMENTOS DE PUNTUACION  ------------------------------------------
 function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
     this.x = positionX+xLab;
     this.y = positionY+yLab;
@@ -150,7 +165,10 @@ function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
 }
 
 // -------------- llamar a la imagen del heroe -----------
-
+let dani = new Image()
+dani.src = "img/daniel.png"
+let wendy =new Image()
+wendy.src="img/mom.png"
 
 // ------------- llamar a a funcion que crea al heroe--------------
 
@@ -160,74 +178,90 @@ function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
 
 
 class fantasma {
-    constructor (src, x,y,ancho, alto, altoImg, anchoImg){
-        this.src = src;
-        this.frameX = 0;
-        this.frameY=0
-        this.x = x;
-        this.y = y;
-        this.speedX=5;
-        this.speedY=0;
-        this.width = ancho;
-        this.height = alto;
-        this.collide = false;
-        this.anchoImg=anchoImg;
-        this.altoImg=altoImg;
+  constructor (src,randomX1,randomX2,randomY1,randomY2,xInit,yInit,ancho, alto, altoImg, anchoImg,positionX1Reset,positionY1Reset,up,down,left,right){
+      this.src = src;
+      this.frameX = 0;
+      this.frameY=0
+      this.x = xInit;
+      this.y = yInit;
+      this.speedX=getRandomInt(randomX1, randomX2);
+      this.speedY=getRandomInt(randomY1, randomY2);
+      this.width = ancho;
+      this.height = alto;
+      this.collide = false;
+      this.anchoImg=anchoImg;
+      this.altoImg=altoImg;
+      
 
+      // Métodos.
+      this.draw = function(){
+          ctx.drawImage(this.src, this.frameX * this.anchoImg, this.frameY*this.altoImg, this.anchoImg, this.altoImg, this.x, this.y, this.height, this.width)
+      
+      },
+      this.newPos=function(){ 
+          this.x+=this.speedX
+          this.y+=this.speedY},
+      this.movimiento=function(){
 
-        // Métodos.
-        this.draw = function(){
-            ctx.drawImage(this.src, this.frameX * this.anchoImg, this.frameY*this.altoImg, this.anchoImg, this.altoImg, this.x, this.y, this.height, this.width)
-        
-        },
-        this.newPos=function(){ 
-            this.x+=this.speedX
-            this.y+=this.speedY},
-        this.movimiento=function(){
+          if (this.x>canvas.width-100) {
+             
+              this.speedX=-left;
+             
+          }
 
-            if (this.x >canvas.width-100) {
-                this.speedX=-this.speedX;
-            }
+          if(this.x<30){
+             
+              this.speedX=right
+              this.frameY=1
+             
+          }
 
-            if(this.x<50){
-                this.speedX=0;
-                this.speedY=-3 ;
-            }
+          if (this.y<48) {
+              
+              this.speedY=down
+              
+          }
+          if (this.y>canvas.height-100) {
+              this.speedY=-up ;
+              
+          }
+          if (this.x> canvas.width) {
+              this.reset()
+          }
 
-            if (this.y<48) {
-                this.speedY =0;
-                this.speedX=3;
-            }
+      },
+      this.reset=function(){
+          this.x=positionX1Reset;
+          this.y=positionY1Reset;
+      }
 
-            if (this.x> canvas.width) {
-                this.reset()
-            }
+      //metodo para mover de lado a lado
+      this.moveToSide = function(cantMov){
+          aux = this.x
+          while(this.x < cantMov){
+              this.x += this.speedX
+              this.frameY = 1
+              this.draw()
+              console.log(this.x)
+          }
+          if(this.x >= cantMov){
+              this.moveToSide(-this.x,-aux)
+          }
 
-        },
-        this.reset=function(){
-            this.x=50;
-            this.y=200;
-        }
+      }
 
-        //metodo para mover de lado a lado
-        this.moveToSide = function(cantMov){
-            aux = this.x
-            while(this.x < cantMov){
-                this.x += this.speedX
-                this.frameY = 1
-                this.draw()
-                console.log(this.x)
-            }
-            if(this.x >= cantMov){
-                this.moveToSide(-this.x,-aux)
-            }
-
-        }
-
-    }
+  }
 }
-
 // -----llamar a las imagenes de los fantasmas ------
+let source="img/twins.png"
+let twins= new Image();
+twins.src=source
+
+// INSTANCIO A LOS FANTASMAS
+
+let gemelas= new fantasma(twins,2,10,2,1080,50,70,70,180,101,30,50,2,2,2,2)
+let gemelas2= new fantasma(twins,800,50,70,70,180,101,30,50,2,2,2,2)
+let enemies= [gemelas,gemelas2]
 
 
 // ----------------- crear array de componentes de fantasmas -----------------
@@ -296,11 +330,9 @@ document.addEventListener("keydown", (e) => {
             
               
     
-
             break;
 
         default:
             break;
     }
 })
-  
