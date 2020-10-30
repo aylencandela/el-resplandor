@@ -371,15 +371,4 @@ document.addEventListener("keydown", (e) => {
         default:
             break;
     }
-<<<<<<< HEAD
 })
-=======
-})
-
-
-//         default:
-//             break;
-//     }
-// })
-
->>>>>>> df2564c8d27731888b04fe78d037fcb242a9cd11
