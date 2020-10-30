@@ -5,6 +5,17 @@ canvas.width = window.innerWidth * 0.7;
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+let interval
+let time=0
+let score=0
+// ------------ CANVAS -----------
+
+
+
+function on(){
+  interval=setInterval(dibujoCanvas,1000/15)
+
+}
 
 // -------------------- PAREDES DEL LOS LABERINTOS --------------------
 
@@ -151,6 +162,7 @@ dani.src = "img/daniel.png"
 let wendy =new Image()
 wendy.src="img/mom.png"
 
+
 // // ------------- llamar a a funcion que crea al miPersonaje--------------
 
 let miPersonaje= new Hero(dani,120,190);
@@ -160,8 +172,8 @@ miPersonaje.draw()
         pared.dibujar()
         miPersonaje.checkCollision(pared)
       })
-    // miPersonaje.frameX++
-    // miPersonaje.frameX >= 5 ? miPersonaje.frameX = 0 : null;
+    miPersonaje.frameX++
+    miPersonaje.frameX >= 5 ? miPersonaje.frameX = 0 : null;
 
 
 
@@ -253,93 +265,74 @@ miPersonaje.draw()
 // let enemies= [gemelas,gemelas2]
 
 
-// // -------------------------- CONSTROLES ----------------------------
-document.addEventListener("keydown", (e) => {
- switch (e.key) {
-        // Arriba
-        case "ArrowUp":
-        case "w":
-        case "W":
-            if (!miPersonaje.collide) {
-                miPersonaje.y -= 3;
-                miPersonaje.frameY=2
-            } else {
-                miPersonaje.y += 15;
-                miPersonaje.collide = false;
-            }
+
+// // // -------------------------- CONSTROLES ----------------------------
+// document.addEventListener("keydown", (e) => {
+//  switch (e.key) {
+//         // Arriba
+//         case "ArrowUp":
+//         case "w":
+//         case "W":
+//             if (!miPersonaje.collide) {
+//                 miPersonaje.y -= 3;
+//                 miPersonaje.frameY=2
+//             } else {
+//                 miPersonaje.y += 15;
+//                 miPersonaje.collide = false;
+//             }
             
-            break;
+//             break;
 
-        // Abajo
-        case "ArrowDown":
-        case "s":
-        case "S":
-            if (!miPersonaje.collide) {
-                miPersonaje.y += 3;miPersonaje.frameY=3
-            } else {
-                miPersonaje.y -= 15;
-                miPersonaje.collide = false;
+//         // Abajo
+//         case "ArrowDown":
+//         case "s":
+//         case "S":
+//             if (!miPersonaje.collide) {
+//                 miPersonaje.y += 3;miPersonaje.frameY=3
+//             } else {
+//                 miPersonaje.y -= 15;
+//                 miPersonaje.collide = false;
 
-            }
-            break;
+//             }
+//             break;
 
 
-        // Izquierda
-        case "ArrowLeft":
-        case "a":
-        case "A":
-            if (!miPersonaje.collide) {
-                miPersonaje.x -= 3;
-                miPersonaje.frameY=1
-            } else {
-                miPersonaje.x += 15;
-                miPersonaje.collide = false;
-            }
-            break;
+//         // Izquierda
+//         case "ArrowLeft":
+//         case "a":
+//         case "A":
+//             if (!miPersonaje.collide) {
+//                 miPersonaje.x -= 3;
+//                 miPersonaje.frameY=1
+//             } else {
+//                 miPersonaje.x += 15;
+//                 miPersonaje.collide = false;
+//             }
+//             break;
 
-        // Derecha
-        case "ArrowRight":
-        case "d":
-        case "D":
-            if (!miPersonaje.collide) {
-                miPersonaje.x += 3;
-                miPersonaje.frameY=0
+//         // Derecha
+//         case "ArrowRight":
+//         case "d":
+//         case "D":
+//             if (!miPersonaje.collide) {
+//                 miPersonaje.x += 3;
+//                 miPersonaje.frameY=0
              
-            } else {
-                miPersonaje.x -= 15;
+//             } else {
+//                 miPersonaje.x -= 15;
 
               
 
-                miPersonaje.collide = false;
-            }
+//                 miPersonaje.collide = false;
+//             }
             
               
     
-            break;
+//             break;
 
-<<<<<<< HEAD
-        default:
-            break;
-    }
-})
-  
 
-// ----------------- funciones del canvas -------------
-
-// function on(){
-//     interval= setInterval(dibujoCanvas, 1000/15)
-//     container.removeChild(buttonOn)
-  
-//   }
-  
-//    function stop(){
-     
-//       clearInterval(interval)
-//         reload.style.display="inline"
-//    }
-=======
 //         default:
 //             break;
 //     }
 // })
->>>>>>> 6076c68f3c7219cf1fa85a7433af3cd70545cbd5
+  
