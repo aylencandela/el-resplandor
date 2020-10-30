@@ -1,3 +1,5 @@
+let buttonOn=document.querySelector("#on")
+let container=document.querySelector("#cont")
 let canvas=document.getElementById('nivel1'); 
 let ctx = canvas.getContext("2d");
 canvas.height = window.innerHeight * 0.6;
@@ -75,6 +77,197 @@ const laberinto1=[
 ];
 
 // -------------- llamar a la funcion que dibuja las paredes -----------
+//  laberinto1.forEach(component=>{
+//  	component.dibujar();
+//  })
+ 
+//  bordes.forEach(component=>{
+//  	component.dibujar();
+//  })
+
+//-------------------- ELEMENTOS DE PUNTUACION  ------------------------------------------
+function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
+    this.x = positionX+xLab;
+    this.y = positionY+yLab;
+    this.width = ancho;
+    this.height = alto;
+
+    this.draw=function(){
+        ctx.drawImage(imagen,0,0,recorteX,recorteY,this.x,this.y,this.width,this.height)
+    }
+  }
+
+// --------------- llamar a las imagenes de los objetos----------
+
+
+
+
+// ------------------crear los objetos ----------------------
+
+ // -----------------------------  NUESTRO PERSONAJE -------------------------
+
+
+ class Hero {
+    constructor(personaje,widthImage,heightImage) {
+        // Propiedades.
+        this.src = personaje;
+        this.frameX = 0;
+        this.frameY=0
+        this.x = 50;
+        this.y = 60;
+        this.width = 54;
+        this.height = 54;
+        this.collide = false;
+        this.widthImage=widthImage
+        this.heightImage=heightImage
+
+
+        // Métodos.
+        this.draw = function(){
+            ctx.drawImage(this.src, this.frameX * this.widthImage, this.frameY*this.heightImage, this.widthImage, this.heightImage, this.x, this.y, this.width, this.height)
+        }
+        this.checkCollision = function (wall) {
+            // Defino los bordes del héroe.
+            this.top = this.y;
+            this.bottom = this.y + this.height;
+            this.left = this.x;
+            this.right = this.x + this.width;
+
+            // Defino los bordes de la pared.
+            const wallTop = wall.y;
+            const wallBottom = wall.y + wall.height;
+            const wallLeft = wall.x;
+            const wallRight = wall.x + wall.width;
+
+            // Compruebo si los bordes chocan.
+            if (
+                this.left < wallRight &&
+                this.right > wallLeft &&
+                this.top < wallBottom &&
+                this.bottom > wallTop
+
+            ) {
+                this.collide = true;
+                 if(wall == gemelas){
+                   
+                    grito.play()
+                    stop()
+
+                }
+                if(wall==llave1){
+                    this.getDoorKey=true
+                      score+=1
+                    } else{
+                        this.getDoorKey=false
+                    }
+            }
+
+        }
+    }
+}
+
+// -------------- llamar a la imagen del heroe -----------
+let dani = new Image()
+dani.src = "img/daniel.png"
+let wendy =new Image()
+wendy.src="img/mom.png"
+
+// ------------- llamar a a funcion que crea al heroe--------------
+
+
+
+// ------------------------------- FANTASMAS -------------------------------
+
+class fantasma {
+  constructor (src,randomX1,randomX2,randomY1,randomY2,xInit,yInit,ancho, alto, altoImg, anchoImg,positionX1Reset,positionY1Reset,up,down,left,right){
+      this.src = src;
+      this.frameX = 0;
+      this.frameY=0
+      this.x = xInit;
+      this.y = yInit;
+      this.speedX=getRandomInt(randomX1, randomX2);
+      this.speedY=getRandomInt(randomY1, randomY2);
+      this.width = ancho;
+      this.height = alto;
+      this.collide = false;
+      this.anchoImg=anchoImg;
+      this.altoImg=altoImg;
+      
+
+      // Métodos.
+      this.draw = function(){
+          ctx.drawImage(this.src, this.frameX * this.anchoImg, this.frameY*this.altoImg, this.anchoImg, this.altoImg, this.x, this.y, this.height, this.width)
+      
+      },
+      this.newPos=function(){ 
+          this.x+=this.speedX
+          this.y+=this.speedY},
+      this.movimiento=function(){
+
+          if (this.x>canvas.width-100) {
+             
+              this.speedX=-left;
+             
+          }
+
+          if(this.x<30){
+             
+              this.speedX=right
+              this.frameY=1
+             
+          }
+
+          if (this.y<48) {
+              
+              this.speedY=down
+              
+          }
+          if (this.y>canvas.height-100) {
+              this.speedY=-up ;
+              
+          }
+          if (this.x> canvas.width) {
+              this.reset()
+          }
+
+      },
+      this.reset=function(){
+          this.x=positionX1Reset;
+          this.y=positionY1Reset;
+      }
+
+      //metodo para mover de lado a lado
+      this.moveToSide = function(cantMov){
+          aux = this.x
+          while(this.x < cantMov){
+              this.x += this.speedX
+              this.frameY = 1
+              this.draw()
+              console.log(this.x)
+          }
+          if(this.x >= cantMov){
+              this.moveToSide(-this.x,-aux)
+          }
+
+      }
+
+  }
+}
+// // -----llamar a las imagenes de los fantasmas ------
+let source="img/twins.png"
+let twins= new Image();
+twins.src=source
+
+// // ----------------- crear array de componentes de fantasmas -----------------
+let gemelas= new fantasma(twins,2,10,2,10,80,50,70,70,180,101,30,50,2,2,2,2)
+// let gemelas2= new fantasma(twins,2,10,2,10,800,50,70,70,180,101,30,50,2,2,2,2)
+
+// let enemies= [gemelas,gemelas2]
+let heroe = new Hero(dani,120,190);
+// let llave1 = new Element(llave,800,575,300,200,50,50)
+
+function gameInit(){
+  ctx.clearRect(0, 0, canvas.width,canvas.height);
  laberinto1.forEach(component=>{
  	component.dibujar();
  })
@@ -82,250 +275,89 @@ const laberinto1=[
  bordes.forEach(component=>{
  	component.dibujar();
  })
-
-// -------------------- ELEMENTOS DE PUNTUACION  ------------------------------------------
-// function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
-//     this.x = positionX+xLab;
-//     this.y = positionY+yLab;
-//     this.width = ancho;
-//     this.height = alto;
-
-//     this.draw=function(){
-//         ctx.drawImage(imagen,0,0,recorteX,recorteY,this.x,this.y,this.width,this.height)
-//     }
-//   }
-
-// // --------------- llamar a las imagenes de los objetos----------
-
-
-
-
-// // ------------------crear los objetos ----------------------
-
-//  // -----------------------------  NUESTRO PERSONAJE -------------------------
-
-
-//  class Hero {
-//     constructor(personaje,widthImage,heightImage) {
-//         // Propiedades.
-//         this.src = personaje;
-//         this.frameX = 0;
-//         this.frameY=0
-//         this.x = 50;
-//         this.y = 60;
-//         this.width = 54;
-//         this.height = 54;
-//         this.collide = false;
-//         this.widthImage=widthImage
-//         this.heightImage=heightImage
-
-
-//         // Métodos.
-//         this.draw = function(){
-//             ctx.drawImage(this.src, this.frameX * this.widthImage, this.frameY*this.heightImage, this.widthImage, this.heightImage, this.x, this.y, this.width, this.height)
-//         }
-//         this.checkCollision = function (wall) {
-//             // Defino los bordes del héroe.
-//             this.top = this.y;
-//             this.bottom = this.y + this.height;
-//             this.left = this.x;
-//             this.right = this.x + this.width;
-
-//             // Defino los bordes de la pared.
-//             const wallTop = wall.y;
-//             const wallBottom = wall.y + wall.height;
-//             const wallLeft = wall.x;
-//             const wallRight = wall.x + wall.width;
-
-//             // Compruebo si los bordes chocan.
-//             if (
-//                 this.left < wallRight &&
-//                 this.right > wallLeft &&
-//                 this.top < wallBottom &&
-//                 this.bottom > wallTop
-
-//             ) {
-//                 this.collide = true;
-//                  if(wall == gemelas){
-                   
-//                     grito.play()
-//                     stop()
-
-//                 }
-//                 if(wall==llave1){
-//                     this.getDoorKey=true
-//                     } else{
-//                         this.getDoorKey=false
-//                     }
-//             }
-
-//         }
-//     }
-// }
-
-// // -------------- llamar a la imagen del heroe -----------
-// let dani = new Image()
-// dani.src = "img/daniel.png"
-// let wendy =new Image()
-// wendy.src="img/mom.png"
-
-// // ------------- llamar a a funcion que crea al heroe--------------
-
-
-
-// // ------------------------------- FANTASMAS -------------------------------
-
-// class fantasma {
-//   constructor (src,randomX1,randomX2,randomY1,randomY2,xInit,yInit,ancho, alto, altoImg, anchoImg,positionX1Reset,positionY1Reset,up,down,left,right){
-//       this.src = src;
-//       this.frameX = 0;
-//       this.frameY=0
-//       this.x = xInit;
-//       this.y = yInit;
-//       this.speedX=getRandomInt(randomX1, randomX2);
-//       this.speedY=getRandomInt(randomY1, randomY2);
-//       this.width = ancho;
-//       this.height = alto;
-//       this.collide = false;
-//       this.anchoImg=anchoImg;
-//       this.altoImg=altoImg;
-      
-
-//       // Métodos.
-//       this.draw = function(){
-//           ctx.drawImage(this.src, this.frameX * this.anchoImg, this.frameY*this.altoImg, this.anchoImg, this.altoImg, this.x, this.y, this.height, this.width)
-      
-//       },
-//       this.newPos=function(){ 
-//           this.x+=this.speedX
-//           this.y+=this.speedY},
-//       this.movimiento=function(){
-
-//           if (this.x>canvas.width-100) {
-             
-//               this.speedX=-left;
-             
-//           }
-
-//           if(this.x<30){
-             
-//               this.speedX=right
-//               this.frameY=1
-             
-//           }
-
-//           if (this.y<48) {
-              
-//               this.speedY=down
-              
-//           }
-//           if (this.y>canvas.height-100) {
-//               this.speedY=-up ;
-              
-//           }
-//           if (this.x> canvas.width) {
-//               this.reset()
-//           }
-
-//       },
-//       this.reset=function(){
-//           this.x=positionX1Reset;
-//           this.y=positionY1Reset;
-//       }
-
-//       //metodo para mover de lado a lado
-//       this.moveToSide = function(cantMov){
-//           aux = this.x
-//           while(this.x < cantMov){
-//               this.x += this.speedX
-//               this.frameY = 1
-//               this.draw()
-//               console.log(this.x)
-//           }
-//           if(this.x >= cantMov){
-//               this.moveToSide(-this.x,-aux)
-//           }
-
-//       }
-
-//   }
-// }
-// // // -----llamar a las imagenes de los fantasmas ------
-// let source="img/twins.png"
-// let twins= new Image();
-// twins.src=source
-
-// // // ----------------- crear array de componentes de fantasmas -----------------
-// let gemelas= new fantasma(twins,2,10,2,1080,50,70,70,180,101,30,50,2,2,2,2)
-// let gemelas2= new fantasma(twins,800,50,70,70,180,101,30,50,2,2,2,2)
-// let enemies= [gemelas,gemelas2]
-
-
-// // -------------------------- CONSTROLES ----------------------------
-// document.addEventListener("keydown", (e) => {
-//  switch (e.key) {
-//         // Arriba
-//         case "ArrowUp":
-//         case "w":
-//         case "W":
-//             if (!heroe.collide) {
-//                 heroe.y -= 3;
-//                 heroe.frameY=2
-//             } else {
-//                 heroe.y += 15;
-//                 heroe.collide = false;
-//             }
+heroe.draw()
+// llave1.draw()
+gemelas.draw()
+gemelas.frameX++
+gemelas.frameX >= 5 ? gemelas.frameX = 0 : null;
+gemelas.newPos()
+gemelas.movimiento()
+heroe.checkCollision(gemelas)
+  heroe.draw()
+  heroe.frameX++
+  heroe.frameX >= 5 ? heroe.frameX = 0 : null;
+  
+}
+function on(){
+  interval= setInterval(gameInit, 1000/15)
+  
+  container.removeChild(buttonOn)
+}
+// -------------------------- CONSTROLES ----------------------------
+document.addEventListener("keydown", (e) => {
+ switch (e.key) {
+        // Arriba
+        case "ArrowUp":
+        case "w":
+        case "W":
+            if (!heroe.collide) {
+                heroe.y -= 3;
+                heroe.frameY=2
+            } else {
+                heroe.y += 15;
+                heroe.collide = false;
+            }
             
-//             break;
+            break;
 
-//         // Abajo
-//         case "ArrowDown":
-//         case "s":
-//         case "S":
-//             if (!heroe.collide) {
-//                 heroe.y += 3;heroe.frameY=3
-//             } else {
-//                 heroe.y -= 15;
-//                 heroe.collide = false;
+        // Abajo
+        case "ArrowDown":
+        case "s":
+        case "S":
+            if (!heroe.collide) {
+                heroe.y += 3;heroe.frameY=3
+            } else {
+                heroe.y -= 15;
+                heroe.collide = false;
 
-//             }
-//             break;
+            }
+            break;
 
 
-//         // Izquierda
-//         case "ArrowLeft":
-//         case "a":
-//         case "A":
-//             if (!heroe.collide) {
-//                 heroe.x -= 3;
-//                 heroe.frameY=1
-//             } else {
-//                 heroe.x += 15;
-//                 heroe.collide = false;
-//             }
-//             break;
+        // Izquierda
+        case "ArrowLeft":
+        case "a":
+        case "A":
+            if (!heroe.collide) {
+                heroe.x -= 3;
+                heroe.frameY=1
+            } else {
+                heroe.x += 15;
+                heroe.collide = false;
+            }
+            break;
 
-//         // Derecha
-//         case "ArrowRight":
-//         case "d":
-//         case "D":
-//             if (!heroe.collide) {
-//                 heroe.x += 3;
-//                 heroe.frameY=0
+        // Derecha
+        case "ArrowRight":
+        case "d":
+        case "D":
+            if (!heroe.collide) {
+                heroe.x += 3;
+                heroe.frameY=0
              
-//             } else {
-//                 heroe.x -= 15;
+            } else {
+                heroe.x -= 15;
 
               
 
-//                 heroe.collide = false;
-//             }
+                heroe.collide = false;
+            }
             
               
     
-//             break;
+            break;
 
-//         default:
-//             break;
-//     }
-// })
+        default:
+            break;
+    }
+})
