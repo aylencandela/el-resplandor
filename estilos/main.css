@@ -203,20 +203,24 @@ p{
     background: transparent;
     color: whitesmoke;
     position: absolute; 
-    font-size: 5vh;
+    font-size: 10px;
     animation: onOff 2s infinite;
 }
 
 section{
     position: absolute;
     z-index: 3;
+    top: 25px;
     display: flex;
     justify-content: center;
-    align-items: center;}
+    align-items: center;
+    height: 60vh;
+
+}
 
 
 
-.animated-text{
+/*.animated-text{
     z-index: 5;
     color: #fff;
     padding: 0 40px;
@@ -235,7 +239,7 @@ section{
     animation: text-slider 30s infinite;
   }
   
-
+*/
   
 
 /*animaciones*/
@@ -253,7 +257,7 @@ section{
     }
 }
 
-@keyframes text-slider {
+/*@keyframes text-slider {
     0%{
       margin-top: 0;
     }
@@ -289,3 +293,4 @@ section{
     }
   }
 
+*/
