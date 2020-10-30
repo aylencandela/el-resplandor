@@ -1,9 +1,10 @@
-
 let canvas=document.getElementById('nivel1'); 
 let ctx = canvas.getContext("2d");
 canvas.height = window.innerHeight * 0.6;
 canvas.width = window.innerWidth * 0.7;
-
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 // -------------------- PAREDES DEL LOS LABERINTOS --------------------
 
@@ -166,80 +167,90 @@ miPersonaje.draw()
 
 // // ------------------------------- FANTASMAS -------------------------------
 
-
 // class fantasma {
-//     constructor (src, x,y,ancho, alto, altoImg, anchoImg){
-//         this.src = src;
-//         this.frameX = 0;
-//         this.frameY=0
-//         this.x = x;
-//         this.y = y;
-//         this.speedX=5;
-//         this.speedY=0;
-//         this.width = ancho;
-//         this.height = alto;
-//         this.collide = false;
-//         this.anchoImg=anchoImg;
-//         this.altoImg=altoImg;
+//   constructor (src,randomX1,randomX2,randomY1,randomY2,xInit,yInit,ancho, alto, altoImg, anchoImg,positionX1Reset,positionY1Reset,up,down,left,right){
+//       this.src = src;
+//       this.frameX = 0;
+//       this.frameY=0
+//       this.x = xInit;
+//       this.y = yInit;
+//       this.speedX=getRandomInt(randomX1, randomX2);
+//       this.speedY=getRandomInt(randomY1, randomY2);
+//       this.width = ancho;
+//       this.height = alto;
+//       this.collide = false;
+//       this.anchoImg=anchoImg;
+//       this.altoImg=altoImg;
+      
 
+//       // Métodos.
+//       this.draw = function(){
+//           ctx.drawImage(this.src, this.frameX * this.anchoImg, this.frameY*this.altoImg, this.anchoImg, this.altoImg, this.x, this.y, this.height, this.width)
+      
+//       },
+//       this.newPos=function(){ 
+//           this.x+=this.speedX
+//           this.y+=this.speedY},
+//       this.movimiento=function(){
 
-//         // Métodos.
-//         this.draw = function(){
-//             ctx.drawImage(this.src, this.frameX * this.anchoImg, this.frameY*this.altoImg, this.anchoImg, this.altoImg, this.x, this.y, this.height, this.width)
-        
-//         },
-//         this.newPos=function(){ 
-//             this.x+=this.speedX
-//             this.y+=this.speedY},
-//         this.movimiento=function(){
+//           if (this.x>canvas.width-100) {
+             
+//               this.speedX=-left;
+             
+//           }
 
-//             if (this.x >canvas.width-100) {
-//                 this.speedX=-this.speedX;
-//             }
+//           if(this.x<30){
+             
+//               this.speedX=right
+//               this.frameY=1
+             
+//           }
 
-//             if(this.x<50){
-//                 this.speedX=0;
-//                 this.speedY=-3 ;
-//             }
+//           if (this.y<48) {
+              
+//               this.speedY=down
+              
+//           }
+//           if (this.y>canvas.height-100) {
+//               this.speedY=-up ;
+              
+//           }
+//           if (this.x> canvas.width) {
+//               this.reset()
+//           }
 
-//             if (this.y<48) {
-//                 this.speedY =0;
-//                 this.speedX=3;
-//             }
+//       },
+//       this.reset=function(){
+//           this.x=positionX1Reset;
+//           this.y=positionY1Reset;
+//       }
 
-//             if (this.x> canvas.width) {
-//                 this.reset()
-//             }
+//       //metodo para mover de lado a lado
+//       this.moveToSide = function(cantMov){
+//           aux = this.x
+//           while(this.x < cantMov){
+//               this.x += this.speedX
+//               this.frameY = 1
+//               this.draw()
+//               console.log(this.x)
+//           }
+//           if(this.x >= cantMov){
+//               this.moveToSide(-this.x,-aux)
+//           }
 
-//         },
-//         this.reset=function(){
-//             this.x=50;
-//             this.y=200;
-//         }
+//       }
 
-//         //metodo para mover de lado a lado
-//         this.moveToSide = function(cantMov){
-//             aux = this.x
-//             while(this.x < cantMov){
-//                 this.x += this.speedX
-//                 this.frameY = 1
-//                 this.draw()
-//                 console.log(this.x)
-//             }
-//             if(this.x >= cantMov){
-//                 this.moveToSide(-this.x,-aux)
-//             }
-
-//         }
-
-//     }
+//   }
 // }
+// // // -----llamar a las imagenes de los fantasmas ------
+// let source="img/twins.png"
+// let twins= new Image();
+// twins.src=source
 
-// // -----llamar a las imagenes de los fantasmas ------
-
-
-// // ----------------- crear array de componentes de fantasmas -----------------
-
+// // // ----------------- crear array de componentes de fantasmas -----------------
+// let gemelas= new fantasma(twins,2,10,2,1080,50,70,70,180,101,30,50,2,2,2,2)
+// let gemelas2= new fantasma(twins,800,50,70,70,180,101,30,50,2,2,2,2)
+// let enemies= [gemelas,gemelas2]
 
 
 // // -------------------------- CONSTROLES ----------------------------
@@ -306,6 +317,7 @@ document.addEventListener("keydown", (e) => {
     
             break;
 
+<<<<<<< HEAD
         default:
             break;
     }
@@ -325,3 +337,9 @@ document.addEventListener("keydown", (e) => {
 //       clearInterval(interval)
 //         reload.style.display="inline"
 //    }
+=======
+//         default:
+//             break;
+//     }
+// })
+>>>>>>> 6076c68f3c7219cf1fa85a7433af3cd70545cbd5
