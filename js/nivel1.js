@@ -76,13 +76,41 @@ function startGame() {
     // miPersonaje= new component(20,20,"red",0,0,false);
     miPersonaje= new personajes (dani,120,190);
     misParedes=[
-        new component(largoPared,anchoPared,"black",30,30,false),
-        new component(anchoPared,largoPared,"black",30,30,true)
-        // new component(anchoPared,largoPared,"black",80,30,true),
-        // new component(largoPared + 4,anchoPared,"black",30,80,false)
+      //Bordes exteriores
+      new component(largoPared*20,anchoPared,"black",0,0,false),
+      new component(anchoPared,largoPared*8,"black",0,0,true),
+      new component(largoPared*20,anchoPared,"black",0,370,false),
+      new component(anchoPared,largoPared*2,"black",952,0,true),
+      new component(anchoPared,largoPared*2,"black",952,225,true),
+
+      //Paredes Laberinto 1
+      new component(largoPared,anchoPared,"black",0,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared,largoPared,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*2,0,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*3,largoPared,true),
+      new component(largoPared,anchoPared,"black",largoPared*3,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared*4,largoPared,true),
+      new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*3,false),
+      new component(anchoPared,largoPared,"black",largoPared,largoPared*3,true),
+      new component(largoPared+5,anchoPared,"black",largoPared,largoPared*4,false),
+      new component(largoPared*2+5,anchoPared,"black",largoPared*3,largoPared*4,false),
+      new component(anchoPared,largoPared,"black",largoPared*5,largoPared*4,true),
+      new component(anchoPared,largoPared,"black",largoPared*5,0,true),
+      new component(largoPared*3+5,anchoPared,"black",largoPared*5,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared*7,largoPared,true),
+      new component(anchoPared,largoPared,"black",largoPared*8,largoPared,true),
+      new component(anchoPared,largoPared*3,"black",largoPared*10,0,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*9,largoPared,true),
+      new component(largoPared*4+5,anchoPared,"black",largoPared*6,largoPared*3,false),
+      new component(anchoPared,largoPared,"black",largoPared*6,largoPared*3,true),
+      new component(largoPared*3+5,anchoPared,"black",largoPared*6,largoPared*4,false),
+      new component(largoPared,anchoPared,"black",largoPared*11,largoPared*3,false),
+      new component(anchoPared,largoPared*2,"black",largoPared*11,largoPared*3,true),
+      new component(anchoPared,largoPared,"black",largoPared*11,0,true),
+      new component(anchoPared,largoPared*2,"black",largoPared*12,0,true)
     ]
   }
-
+  
   var miAreaDejuego = {
     canvas : document.getElementById('nivel1'),
     start : function() {
@@ -116,7 +144,7 @@ function startGame() {
     ctx.fillStyle = color;
     ctx.fillRect(this.x, this.y, this.ancho, this.alto);
     }
-
+    
   }
 
 // CONSTRUCTOR DE NUESTRO PERSONAJE
@@ -125,8 +153,8 @@ function startGame() {
  		this.src = personaje;
         this.frameX = 0;
         this.frameY=0
-        this.x = 300;
-        this.y = 200;
+        this.x = 50;
+        this.y = 100;
         this.speedX=0;
         this.speedY=0;
         this.width = 54;
@@ -164,14 +192,14 @@ function startGame() {
 
 	        if (vertical) {
 	            // <
-
-	            if (this.miTop >  paredBase || this.miBase < paredTop ) {
+	            
+	            if (this.miTop > paredBase || this.miBase < paredTop ) {
 	                this.colision1=false
-	            } else if(this.miDrc >  paredIzq || this.miBase > paredTop){
+	            } else if(this.miDrc ==  paredIzq || this.miBase > paredTop){
 	             this.colision1=true
 	           }else if (this.miIzq<=paredDrc) {
 	            this.colision2=true;
-	            }
+	            }    
 
 
 	        }else{
@@ -199,50 +227,115 @@ function startGame() {
    miAreaDejuego.clear();
    miPersonaje.draw();
    miPersonaje.nuevaPosicion();
-
+   miPersonaje.speedX=0;
+   miPersonaje.speedY=0;
+   
    if (miAreaDejuego.key && miAreaDejuego.key == 37){
-    //  if (miPersonaje.colision2) {
-    //         miPersonaje.speedX=0;
-    //         miPersonaje.colision2=false;
-    //       } else {
-          miPersonaje.speedX = -.7;
+     if (miPersonaje.colision2) {
+            miPersonaje.speedX=0;
+            miPersonaje.colision2=false;
+          } else {
+          miPersonaje.speedX = -1;
           miPersonaje.frameY=1
 
-      // }
+      } 
 
       }
     if (miAreaDejuego.key && miAreaDejuego.key == 39) {
+      
+      if (miPersonaje.colision1){
+        miPersonaje.speedX=0;
+        miPersonaje.colision1=false;
+      } else if (miPersonaje.colision2 || !miPersonaje.colision1 || miPersonaje.colision3){
+      miPersonaje.speedX = 1;
+      miPersonaje.frameY=0
 
-      miPersonaje.speedX=.8
+      } 
 
     }
     if (miAreaDejuego.key && miAreaDejuego.key == 38) {
-      // if (miPersonaje.colision3) {
-      //   miPersonaje.speedY=0;
-      //   miPersonaje.colision3=false;
-      // }else{
-      miPersonaje.speedY = -.7;
+      if (miPersonaje.colision3) {
+        miPersonaje.speedY=0;
+        miPersonaje.colision3=false;
+      }else{
+      miPersonaje.speedY = -1;        
       miPersonaje.frameY=2
-
+ 
       }
-    //  }
+     }
     if (miAreaDejuego.key && miAreaDejuego.key == 40) {
-      // if (miPersonaje.colision4) {
-      //   miPersonaje.speedY=0;
-      //   miPersonaje.colision4=false;
-      // }else{
-      miPersonaje.speedY = .7;
-      miPersonaje.frameY=3;
+      if (miPersonaje.colision4) {
+        miPersonaje.speedY=0;
+        miPersonaje.colision4=false;
+      }else{
+      miPersonaje.speedY = 1;  
+      miPersonaje.frameY=3;       
 
       }
-    //  }
+     }
 
     for (let i = 0; i < misParedes.length; i++) {
-        misParedes[i].update()
-        miPersonaje.colision(misParedes[i])
-
-
+        misParedes[i].update() 
+        miPersonaje.colision(misParedes[i])   
+  
+        
     }
   }
+    
+  
+// LABERINTOS
+        
+// Paredes Laberinto 2
+// new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*2,false),
+// new component(anchoPared,largoPared,"black",largoPared*4,0,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*2,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared,largoPared,true),
+// new component(largoPared*3+5,anchoPared,"black",largoPared,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*2,largoPared*4,true),
+// new component(largoPared*4+5,anchoPared,"black",largoPared*2,largoPared*4,false),
+// new component(anchoPared,largoPared,"black",largoPared*4,largoPared*3,true),
+// new component(largoPared*3,anchoPared,"black",largoPared*5,largoPared*3,false),
+// new component(largoPared,anchoPared,"black",largoPared*5,largoPared,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*8,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*6,largoPared,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*6,largoPared*2,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*7,0,true),
+// new component(largoPared*3+5,anchoPared,"black",largoPared*8,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared*11,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*11,largoPared*2,false),
+// new component(anchoPared,largoPared,"black",largoPared*8,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*8,largoPared*2,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*10,largoPared*2,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*9,largoPared*4,false),
+// new component(anchoPared,largoPared,"black",largoPared*9,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*11,largoPared*3,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*11,largoPared*3,false),
+// new component(largoPared+5,anchoPared,"black",largoPared*11,largoPared*4,false)
 
-
+// Paredes Laberinto 3
+// new component(largoPared*3+5,anchoPared,"black",largoPared,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared,0,true),
+// new component(anchoPared,largoPared*2,"black",largoPared*4,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*4,largoPared*2,false),
+// new component(largoPared+5,anchoPared,"black",largoPared*4,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared*5,largoPared,true),
+// new component(largoPared*2+5,anchoPared,"black",0,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared*2,largoPared*2,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*2,largoPared*2,false),
+// new component(anchoPared,largoPared*2,"black",largoPared*3,largoPared*2,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*4,false),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*4,largoPared*4,false),
+// new component(anchoPared,largoPared,"black",largoPared*6,largoPared*3,true),
+// new component(anchoPared,largoPared,"black",largoPared*7,largoPared*4,true),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*8,largoPared*3,false),
+// new component(anchoPared,largoPared,"black",largoPared*9,largoPared*3,true),
+// new component(largoPared*3+5,anchoPared,"black",largoPared*9,largoPared*4,false),
+// new component(anchoPared,largoPared*3,"black",largoPared*11,largoPared,true),
+// new component(largoPared+5,anchoPared,"black",largoPared*11,largoPared,false),
+// new component(largoPared*2+5,anchoPared,"black",largoPared*7,largoPared*2,false),
+// new component(largoPared+5,anchoPared,"black",largoPared*7,largoPared,false),
+// new component(anchoPared,largoPared,"black",largoPared*7,largoPared,true),
+// new component(anchoPared,largoPared,"black",largoPared*8,0,true),
+// new component(anchoPared,largoPared,"black",largoPared*9,largoPared,true),
+// new component(anchoPared,largoPared*2,"black",largoPared*10,0,true)

@@ -9,7 +9,7 @@ function startGame() {
         new component(largoPared,anchoPared,"black",30,30,false),
         new component(anchoPared,largoPared,"black",30,30,true),
         new component(anchoPared,largoPared,"black",80,30,true),
-        new component(largoPared + 4,anchoPared,"black",30,80,false)
+        // new component(largoPared + 4,anchoPared,"black",30,80,false)
     ]
   }
   
