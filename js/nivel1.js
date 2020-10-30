@@ -4,6 +4,8 @@ let canvas=document.getElementById('nivel1');
 let ctx = canvas.getContext("2d");
 const gameOver = document.getElementById("game-over");
 const game = document.getElementById("cont");
+const game2 = document.getElementById("cont2");
+const game3 = document.getElementById("cont3");
 
 canvas.height = window.innerHeight * 0.6;
 canvas.width = window.innerWidth * 0.7;
@@ -157,6 +159,8 @@ let elements=[doorKey]
                     grito.play()
                     stop() 
                     game.style.display = "none";
+                    game2.style.display = "none";
+                    game3.style.display = "none";
                     gameOver.style.display = "flex";
                     
 
