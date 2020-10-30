@@ -1,1 +1,29 @@
-// No se como separarlo del otro???? :'c
+const laberinto2=[
+      new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*2,false),
+      new component(anchoPared,largoPared,"black",largoPared*4,0,true),
+      new component(largoPared*2+5,anchoPared,"black",largoPared*2,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared,largoPared,true),
+      new component(largoPared*3+5,anchoPared,"black",largoPared,largoPared*3,false),
+      new component(anchoPared,largoPared,"black",largoPared,largoPared*3,true),
+      new component(anchoPared,largoPared,"black",largoPared*2,largoPared*4,true),
+      new component(largoPared*4+5,anchoPared,"black",largoPared*2,largoPared*4,false),
+      new component(anchoPared,largoPared,"black",largoPared*4,largoPared*3,true),
+      new component(largoPared*3,anchoPared,"black",largoPared*5,largoPared*3,false),
+      new component(largoPared,anchoPared,"black",largoPared*5,largoPared,false),
+      new component(anchoPared,largoPared*2,"black",largoPared*8,largoPared*3,true),
+      new component(anchoPared,largoPared,"black",largoPared*6,largoPared,true),
+      new component(largoPared+5,anchoPared,"black",largoPared*6,largoPared*2,false),
+      new component(anchoPared,largoPared*2,"black",largoPared*7,0,true),
+      new component(largoPared*3+5,anchoPared,"black",largoPared*8,largoPared,false),
+      new component(anchoPared,largoPared,"black",largoPared*11,largoPared,true),
+      new component(largoPared*2+5,anchoPared,"black",largoPared*11,largoPared*2,false),
+      new component(anchoPared,largoPared,"black",largoPared*8,largoPared,true),
+      new component(largoPared*2+5,anchoPared,"black",largoPared*8,largoPared*2,false),
+      new component(anchoPared,largoPared*2,"black",largoPared*10,largoPared*2,true),
+      new component(largoPared+5,anchoPared,"black",largoPared*9,largoPared*4,false),
+      new component(anchoPared,largoPared,"black",largoPared*9,largoPared*3,true),
+      new component(anchoPared,largoPared,"black",largoPared*11,largoPared*3,true),
+      new component(largoPared*2+5,anchoPared,"black",largoPared*11,largoPared*3,false),
+      new component(largoPared+5,anchoPared,"black",largoPared*11,largoPared*4,false)
+
+];

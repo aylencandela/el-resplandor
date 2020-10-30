@@ -47,7 +47,7 @@ main{
     grid-template-rows: repeat(1,100vh);
 }
 
-#container{
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,4 +56,9 @@ main{
     width: 100vw;
     overflow: hidden;
     background-image: url("../img/piso1.jpg");
+}
+
+#nivel1{
+    background-image: url("../img/piso2.jpg");
+
 }
