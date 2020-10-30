@@ -164,6 +164,8 @@ let elements=[doorKey]
                     game2.style.display = "none";
                     game3.style.display = "none";
                     gameOver.style.display = "flex";
+                    lluvia.play()
+                    mapas.pause()
                     
 
                 }

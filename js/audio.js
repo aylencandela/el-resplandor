@@ -18,3 +18,5 @@ boton.addEventListener("click", function (){
 });
 
 var grito = document.getElementById("grito");
+var lluvia = document.getElementById("lluvia");
+var mapas = document.getElementById("mapas");

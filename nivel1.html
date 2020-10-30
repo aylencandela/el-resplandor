@@ -16,14 +16,11 @@
                  <button  class="boton" id="off" onclick="stop()">stop</button>
               </div>
               <canvas id="nivel1"> </canvas>
-              <button id="botonAi"><img id="sound2" src ="https://img.icons8.com/carbon-copy/100/000000/low-volume.png"></button>       
-
          </div>  
     </div>
 
     <div class="container" id="cont2">
         <canvas id="nivel2"> </canvas>
-        
     </div>
 
     <div class="container" id="cont3">
@@ -32,9 +29,9 @@
 
     <div class="container" id="game-over">
         <h1 id="lose">GAME OVER</h1>
-        <button id="botonHistoria" onclick="resetNivel()"><a href="#nivel1">COMENZAR DE NUEVO</a></button>
-        <button id="botonAi"><img id="sound2" src ="https://img.icons8.com/carbon-copy/100/000000/low-volume.png"></button>
+        <button id="botonHistoria"><a href="nivel1.html#cont">COMENZAR DE NUEVO</a></button>
     </div>
+    <button class="botonAi" id="botonAi"><img id="sound2" src ="https://img.icons8.com/carbon-copy/100/000000/low-volume.png"></button>       
     </div>
 
     <div class="container">
@@ -42,12 +39,15 @@
     </div>
 
     <!-- AUDIO -->
-    <audio autoplay="autoplay" loop="loop">
-    <source src="audio/mapas.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="grito">
-        <source src="audio/mujergritando2.mp3" type="audio/mpeg">
-    </audio>
+        <audio autoplay="autoplay" loop="loop" id="mapas">
+        <source src="audio/mapas.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="grito">
+            <source src="audio/mujergritando2.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="lluvia" loop="loop">
+            <source src="audio/sonidodelluvia.mp3" type="audio/mpeg">
+        </audio>
 </main>
 
    
