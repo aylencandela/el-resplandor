@@ -17,4 +17,4 @@ boton.addEventListener("click", function (){
 
 });
 
-var grito = document.getElementById("grito")
+var grito = document.getElementById("grito");

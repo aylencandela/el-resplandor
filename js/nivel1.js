@@ -34,57 +34,57 @@ function component(ancho, alto, color, x, y,vertical) {
 
 
 const bordes=[
-      new component(largoPared*20,anchoPared,"black",0,0,false,"wall"),
-      new component(anchoPared,largoPared*8,"black",0,0,true,"wall"),
-      new component(largoPared*20,anchoPared,"black",0,386.5,false,"wall"),
-      new component(anchoPared,largoPared*2,"black",948,0,true,"wall"),
-      new component(anchoPared,largoPared*2,"black",948,238,true,"wall")
+      new component(largoPared*20,anchoPared,"#735700",0,0,false,"wall"),
+      new component(anchoPared,largoPared*8,"#735700",0,0,true,"wall"),
+      new component(largoPared*20,anchoPared,"#735700",0,386.5,false,"wall"),
+      new component(anchoPared,largoPared*2,"#735700",948,0,true,"wall"),
+      new component(anchoPared,largoPared*2,"#735700",948,238,true,"wall")
 ]
 
 // ---- laberinto 1 -----
 
 const laberinto1=[
 
-      new component(largoPared,anchoPared,"black",0,largoPared,false),
-      new component(anchoPared,largoPared,"black",largoPared,largoPared,true),
-      new component(anchoPared,largoPared*2,"black",largoPared*2,0,true),
-      new component(anchoPared,largoPared*2,"black",largoPared*3,largoPared,true),
-      new component(largoPared,anchoPared,"black",largoPared*3,largoPared,false),
-      new component(anchoPared,largoPared,"black",largoPared*4,largoPared,true),
-      new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*3,false),
-      new component(anchoPared,largoPared,"black",largoPared,largoPared*3,true),
-      new component(largoPared+5,anchoPared,"black",largoPared,largoPared*4,false),
-      new component(largoPared*2+5,anchoPared,"black",largoPared*3,largoPared*4,false),
-      new component(anchoPared,largoPared,"black",largoPared*5,largoPared*4,true),
-      new component(anchoPared,largoPared,"black",largoPared*5,0,true),
-      new component(largoPared*3+5,anchoPared,"black",largoPared*5,largoPared,false),
-      new component(anchoPared,largoPared,"black",largoPared*7,largoPared,true),
-      new component(anchoPared,largoPared,"black",largoPared*8,largoPared,true),
-      new component(anchoPared,largoPared*3,"black",largoPared*10,0,true),
-      new component(anchoPared,largoPared*2,"black",largoPared*9,largoPared,true),
-      new component(largoPared*4+5,anchoPared,"black",largoPared*6,largoPared*3,false),
-      new component(anchoPared,largoPared,"black",largoPared*6,largoPared*3,true),
-      new component(largoPared*3+5,anchoPared,"black",largoPared*6,largoPared*4,false),
-      new component(largoPared,anchoPared,"black",largoPared*11,largoPared*3,false),
-      new component(anchoPared,largoPared*2,"black",largoPared*11,largoPared*3,true),
-      new component(anchoPared,largoPared,"black",largoPared*11,0,true),
-      new component(anchoPared,largoPared*2,"black",largoPared*12,0,true)
+      new component(largoPared,anchoPared,"#735700",0,largoPared,false),
+      new component(anchoPared,largoPared,"#735700",largoPared,largoPared,true),
+      new component(anchoPared,largoPared*2,"#735700",largoPared*2,0,true),
+      new component(anchoPared,largoPared*2,"#735700",largoPared*3,largoPared,true),
+      new component(largoPared,anchoPared,"#735700",largoPared*3,largoPared,false),
+      new component(anchoPared,largoPared,"#735700",largoPared*4,largoPared,true),
+      new component(largoPared*2+5,anchoPared,"#735700",largoPared,largoPared*3,false),
+      new component(anchoPared,largoPared,"#735700",largoPared,largoPared*3,true),
+      new component(largoPared+5,anchoPared,"#735700",largoPared,largoPared*4,false),
+      new component(largoPared*2+5,anchoPared,"#735700",largoPared*3,largoPared*4,false),
+      new component(anchoPared,largoPared,"#735700",largoPared*5,largoPared*4,true),
+      new component(anchoPared,largoPared,"#735700",largoPared*5,0,true),
+      new component(largoPared*3+5,anchoPared,"#735700",largoPared*5,largoPared,false),
+      new component(anchoPared,largoPared,"#735700",largoPared*7,largoPared,true),
+      new component(anchoPared,largoPared,"#735700",largoPared*8,largoPared,true),
+      new component(anchoPared,largoPared*3,"#735700",largoPared*10,0,true),
+      new component(anchoPared,largoPared*2,"#735700",largoPared*9,largoPared,true),
+      new component(largoPared*4+5,anchoPared,"#735700",largoPared*6,largoPared*3,false),
+      new component(anchoPared,largoPared,"#735700",largoPared*6,largoPared*3,true),
+      new component(largoPared*3+5,anchoPared,"#735700",largoPared*6,largoPared*4,false),
+      new component(largoPared,anchoPared,"#735700",largoPared*11,largoPared*3,false),
+      new component(anchoPared,largoPared*2,"#735700",largoPared*11,largoPared*3,true),
+      new component(anchoPared,largoPared,"#735700",largoPared*11,0,true),
+      new component(anchoPared,largoPared*2,"#735700",largoPared*12,0,true)
 
 ];
 
 // -------------- llamar a la funcion que dibuja las paredes -----------
 //  laberinto1.forEach(component=>{
-//  	component.dibujar();
+//    component.dibujar();
 //  })
  
 //  bordes.forEach(component=>{
-//  	component.dibujar();
+//    component.dibujar();
 //  })
 
 //-------------------- ELEMENTOS DE PUNTUACION  ------------------------------------------
 function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
-    this.x = positionX+xLab;
-    this.y = positionY+yLab;
+    this.x = positionX;
+    this.y = positionY;
     this.width = ancho;
     this.height = alto;
 
@@ -95,10 +95,17 @@ function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
 
 // --------------- llamar a las imagenes de los objetos----------
 
+let llave =new Image()
+llave.src="img/llave.png"
 
 
 
 // ------------------crear los objetos ----------------------
+let doorKey= new Element(llave,800,575,300,200,50,50)
+
+
+
+let elements=[doorKey]
 
  // -----------------------------  NUESTRO PERSONAJE -------------------------
 
@@ -109,8 +116,8 @@ function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
         this.src = personaje;
         this.frameX = 0;
         this.frameY=0
-        this.x = 50;
-        this.y = 60;
+        this.x = 20;
+        this.y = 10;
         this.width = 54;
         this.height = 54;
         this.collide = false;
@@ -272,9 +279,11 @@ function gameInit(){
 heroe.checkCollision(component)
    
  })
+
+ elements[0].draw()
  
  bordes.forEach(component=>{
- 	component.dibujar();
+  component.dibujar();
  })
 heroe.draw()
 // llave1.draw()
@@ -369,10 +378,3 @@ document.addEventListener("keydown", (e) => {
             break;
     }
 })
-
-
-//         default:
-//             break;
-//     }
-// })
-
