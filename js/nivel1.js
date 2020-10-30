@@ -143,16 +143,16 @@ function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
                 this.collide = true;
                  if(wall == gemelas){
                    
-                    grito.play()
+                    // grito.play()
                     stop()
 
                 }
-                if(wall==llave1){
-                    this.getDoorKey=true
-                      score+=1
-                    } else{
-                        this.getDoorKey=false
-                    }
+                // if(wall==llave1){
+                //     this.getDoorKey=true
+                //       score+=1
+                //     } else{
+                //         this.getDoorKey=false
+                //     }
             }
 
         }
@@ -262,7 +262,9 @@ let heroe = new Hero(dani,120,190);
 function gameInit(){
   ctx.clearRect(0, 0, canvas.width,canvas.height);
  laberinto1.forEach(component=>{
- 	component.dibujar();
+   component.dibujar();
+heroe.checkCollision(component)
+   
  })
  
  bordes.forEach(component=>{
@@ -285,6 +287,12 @@ function on(){
   interval= setInterval(gameInit, 1000/15)
   
   container.removeChild(buttonOn)
+}
+
+function stop(){
+     
+  clearInterval(interval)
+    // reload.style.display="inline"
 }
 // -------------------------- CONSTROLES ----------------------------
 document.addEventListener("keydown", (e) => {
