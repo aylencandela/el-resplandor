@@ -1,3 +1,37 @@
+
+
+let buttonOn=document.querySelector("#encendido");
+let container=document.querySelector("#cont2");
+let canvas=document.getElementById('nivel2'); 
+let ctx = canvas.getContext("ctx2");
+const gameOver = document.getElementById("game-over");
+const game = document.getElementById("cont2");
+
+canvas.height = window.innerHeight * 0.6;
+canvas.width = window.innerWidth * 0.7;
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// -------------------- PAREDES DEL LOS LABERINTOS --------------------
+
+const anchoPared=5;
+const largoPared=75;
+
+function component(ancho, alto, color, x, y,vertical) {
+    this.x = x;
+    this.y = y;
+    this.width = ancho;
+    this.height = alto;
+    this.color = color;
+    this.vertical=vertical;
+
+    this.dibujar = function () {
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+    }
+}
+
 const laberinto2=[
       new component(largoPared*2+5,anchoPared,"black",largoPared,largoPared*2,false),
       new component(anchoPared,largoPared,"black",largoPared*4,0,true),
@@ -27,38 +61,6 @@ const laberinto2=[
       new component(largoPared+5,anchoPared,"black",largoPared*11,largoPared*4,false)
 
 ];
-
-let buttonOn=document.querySelector("#on")
-let container=document.querySelector("#cont")
-let canvas=document.getElementById('nivel2'); 
-let ctx = canvas.getContext("2d");
-const gameOver = document.getElementById("game-over");
-const game = document.getElementById("cont");
-
-canvas.height = window.innerHeight * 0.6;
-canvas.width = window.innerWidth * 0.7;
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-// -------------------- PAREDES DEL LOS LABERINTOS --------------------
-
-const anchoPared=5;
-const largoPared=75;
-
-function component(ancho, alto, color, x, y,vertical) {
-    this.x = x;
-    this.y = y;
-    this.width = ancho;
-    this.height = alto;
-    this.color = color;
-    this.vertical=vertical;
-
-    this.dibujar = function () {
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.x, this.y, this.width, this.height)
-    }
-}
 
 //-------------------- ELEMENTOS DE PUNTUACION  ------------------------------------------
 function Element (imagen,recorteX,recorteY,positionX, positionY, ancho, alto){
@@ -136,12 +138,12 @@ let elements=[doorKey]
                       
   
                   }
-                  // if(wall==llave1){
-                  //     this.getDoorKey=true
-                  //       score+=1
-                  //     } else{
-                  //         this.getDoorKey=false
-                  //     }
+                  if(wall==llave1){
+                      this.getDoorKey=true
+                        score+=1
+                      } else{
+                          this.getDoorKey=false
+                      }
               }
   
           }

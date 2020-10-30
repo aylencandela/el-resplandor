@@ -74,6 +74,8 @@ const laberinto1=[
 
 ];
 
+let puerta= new component(6,largoPared+ 20,"red",948,150,true);
+
 // -------------- llamar a la funcion que dibuja las paredes -----------
 //  laberinto1.forEach(component=>{
 //    component.dibujar();
@@ -171,6 +173,11 @@ let elements=[doorKey]
                     } else{
                         this.getDoorKey=false
                     }
+
+                if(wall == puerta){
+                      game.style.display = "none";
+                      game2.style.display = "flex";
+                      }
             }
 
         }
@@ -285,6 +292,8 @@ heroe.checkCollision(component)
    
  })
 
+puerta.dibujar()
+heroe.checkCollision(puerta)
 
  elements.forEach(e=>{
   heroe.checkCollision(e);
