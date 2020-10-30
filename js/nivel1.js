@@ -8,13 +8,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// let anchoPared= 10
-// let altoPared=22
-// let grosorPared=5
-// let interval
-// let seg=0
-
-
 // -------------------- PAREDES DEL LOS LABERINTOS --------------------
 
 const anchoPared=5;
@@ -357,7 +350,15 @@ document.addEventListener("keydown", (e) => {
     
             break;
 
+
         default:
             break;
     }
 })
+
+
+//         default:
+//             break;
+//     }
+// })
+
